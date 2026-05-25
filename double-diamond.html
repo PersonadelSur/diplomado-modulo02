@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Double Diamond + Herramientas IA — Módulo 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f5f5;
+  --white: #ffffff;
+  --black: #000000;
+  --body: #111029;
+  --accent: #1500ff;
+  --accent-bg: rgba(21,0,255,0.07);
+  --accent-border: rgba(21,0,255,0.18);
+  --diverge: #c96a00;
+  --diverge-bg: rgba(201,106,0,0.09);
+  --diverge-border: rgba(201,106,0,0.22);
+  --converge: #007a5e;
+  --converge-bg: rgba(0,122,94,0.09);
+  --converge-border: rgba(0,122,94,0.22);
+  --synth: #4a22b8;
+  --synth-bg: rgba(74,34,184,0.08);
+  --synth-border: rgba(74,34,184,0.2);
+  --border: rgba(0,0,0,0.09);
+  --dim: #666677;
+  --font: 'Poppins', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--body);
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 40px 72px;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--black);
+}
+
+.header-left {}
+.eyebrow {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.h-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.h-title span { color: var(--accent); }
+.h-sub {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--dim);
+  margin-top: 6px;
+}
+.header-tag {
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 6px 14px;
+  border-radius: 4px;
+}
+
+/* ZONE LEGEND */
+.legend {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.leg-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.leg-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.leg-item.d .leg-dot { background: var(--diverge); }
+.leg-item.c .leg-dot { background: var(--converge); }
+.leg-item.d { color: var(--diverge); }
+.leg-item.c { color: var(--converge); }
+
+/* DIAMOND SVG */
+.diamond-wrap {
+  margin-bottom: 40px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px 20px;
+}
+
+.diamond-labels {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+  margin-bottom: 8px;
+  gap: 4px;
+}
+
+.phase-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+.phase-label.discover { color: var(--diverge); background: var(--diverge-bg); }
+.phase-label.define { color: var(--converge); background: var(--converge-bg); }
+.phase-label.develop { color: var(--diverge); background: var(--diverge-bg); }
+.phase-label.deliver { color: var(--converge); background: var(--converge-bg); }
+
+.diamond-svg-wrap {
+  width: 100%;
+  overflow: visible;
+}
+
+.diamond-zone-labels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 6px;
+  text-align: center;
+  gap: 4px;
+}
+
+.zone-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 4px 0;
+}
+.zone-badge.div { color: var(--diverge); }
+.zone-badge.con { color: var(--converge); }
+
+/* PHASES GRID */
+.phases-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 40px;
+}
+
+.phase-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.phase-card-header {
+  padding: 14px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.phase-num {
+  font-size: 0.58rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+.phase-card.discover .phase-num { color: var(--diverge); }
+.phase-card.define .phase-num { color: var(--converge); }
+.phase-card.develop .phase-num { color: var(--diverge); }
+.phase-card.deliver .phase-num { color: var(--converge); }
+
+.phase-card-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 3px;
+}
+
+.phase-card-verb {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--dim);
+}
+
+.phase-card-top {
+  height: 4px;
+}
+.phase-card.discover .phase-card-top { background: var(--diverge); }
+.phase-card.define .phase-card-top { background: var(--converge); }
+.phase-card.develop .phase-card-top { background: var(--diverge); }
+.phase-card.deliver .phase-card-top { background: var(--converge); }
+
+.phase-body { padding: 14px 16px; }
+
+.question-box {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--body);
+  font-style: italic;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  border-left: 3px solid;
+}
+.phase-card.discover .question-box { border-color: var(--diverge); background: var(--diverge-bg); }
+.phase-card.define .question-box { border-color: var(--converge); background: var(--converge-bg); }
+.phase-card.develop .question-box { border-color: var(--diverge); background: var(--diverge-bg); }
+.phase-card.deliver .question-box { border-color: var(--converge); background: var(--converge-bg); }
+
+.tools-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dim);
+  margin-bottom: 8px;
+}
+
+.tool-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tool-chip {
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.tool-chip.chat { color: var(--accent); border-color: var(--accent-border); background: var(--accent-bg); }
+.tool-chip.research { color: #006b3f; border-color: rgba(0,107,63,0.25); background: rgba(0,107,63,0.07); }
+.tool-chip.audio { color: #7a0060; border-color: rgba(122,0,96,0.25); background: rgba(122,0,96,0.07); }
+.tool-chip.design { color: #8a4a00; border-color: rgba(138,74,0,0.25); background: rgba(138,74,0,0.07); }
+.tool-chip.proto { color: #003f8a; border-color: rgba(0,63,138,0.25); background: rgba(0,63,138,0.07); }
+.tool-chip.present { color: #5a006b; border-color: rgba(90,0,107,0.25); background: rgba(90,0,107,0.07); }
+.tool-chip.auto { color: #006060; border-color: rgba(0,96,96,0.25); background: rgba(0,96,96,0.07); }
+.tool-chip.data { color: #5c3000; border-color: rgba(92,48,0,0.25); background: rgba(92,48,0,0.07); }
+
+.pm-note {
+  margin-top: 12px;
+  padding: 8px 10px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  border-radius: 6px;
+  font-size: 0.62rem;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1.5;
+}
+.pm-note::before { content: '👤 PM · '; font-weight: 700; }
+
+/* LIFECYCLE ROW */
+.lifecycle-section {
+  margin-bottom: 40px;
+}
+
+.lifecycle-title {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.lifecycle-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.lc-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 12px;
+}
+
+.lc-phase {
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.lc-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.lc-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1.5px solid var(--black);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-module { font-size: 0.72rem; font-weight: 700; color: var(--black); }
+.footer-sub { font-size: 0.62rem; color: var(--dim); margin-top: 2px; }
+.footer-ref { font-size: 0.62rem; color: var(--accent); font-weight: 500; text-align: right; }
+</style>
+<style>
+body { padding-top: 52px !important; }
+</style>
+</head>
+<body>
+<!-- NAV HEADER -->
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-thin">Módulo 2</span>
+      <span class="nav-brand-sep">|</span>
+      <span class="nav-brand-bold">Insights, Comportamiento y Oportunidades de Producto</span>
+    </a>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="guia-workshop.html" class="nav-link">Guía Workshop</a>
+      <a href="double-diamond.html" class="nav-link">Double Diamond</a>
+      <a href="stack-herramientas.html" class="nav-link">Stack de Herramientas</a>
+      <a href="diverger-converger.html" class="nav-link">Diverger · Converger</a>
+      <a href="capas-ia.html" class="nav-link">Capas de Inteligencia Artificial <span class="nav-badge">Adelanto</span></a>
+    </div>
+  </div>
+</nav>
+<style>
+#site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #111029;
+  border-bottom: 2px solid #1500ff;
+  font-family: 'Poppins', sans-serif;
+}
+.nav-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+  margin-right: 32px;
+}
+.nav-brand-thin {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.nav-brand-sep {
+  font-size: 0.7rem;
+  color: #1500ff;
+  font-weight: 300;
+}
+.nav-brand-bold {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 340px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+.nav-link {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,0.07);
+}
+.nav-link.active {
+  color: #ffffff;
+  background: rgba(21,0,255,0.25);
+  border: 1px solid rgba(21,0,255,0.4);
+}
+.nav-badge {
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(21,0,255,0.3);
+  color: #8899ff;
+  border: 1px solid rgba(21,0,255,0.35);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+}
+.nav-toggle span {
+  display: block;
+  width: 20px; height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+@media (max-width: 900px) {
+  .nav-brand-bold { max-width: 160px; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 52px; left: 0; right: 0;
+    background: #111029;
+    border-bottom: 2px solid #1500ff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 16px 16px;
+    gap: 2px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-link { width: 100%; }
+}
+</style>
+<script>
+function toggleNav() {
+  document.getElementById('nav-links').classList.toggle('open');
+}
+// Mark active link
+(function() {
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  var links = document.querySelectorAll('.nav-link');
+  links.forEach(function(l) {
+    if (l.getAttribute('href') === path) l.classList.add('active');
+  });
+})();
+</script>
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="eyebrow">Módulo 2 · Insights, Comportamiento y Oportunidades de Producto</div>
+      <div class="h-title">Double Diamond<br>+ <span>Herramientas IA</span></div>
+      <div class="h-sub">Qué herramienta usar, en qué fase, y con qué modo de pensamiento</div>
+    </div>
+    <div class="header-tag">Pieza 1 de 5</div>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item d"><div class="leg-dot"></div> Diverge — explorar sin filtrar</div>
+    <div class="leg-item c"><div class="leg-dot"></div> Converge — decidir con criterio</div>
+  </div>
+
+  <!-- DIAMOND SVG -->
+  <div class="diamond-wrap">
+    <div class="diamond-labels">
+      <div class="phase-label discover">◐ Discover</div>
+      <div class="phase-label define">◑ Define</div>
+      <div class="phase-label develop">◐ Develop</div>
+      <div class="phase-label deliver">◑ Deliver</div>
+    </div>
+
+    <svg viewBox="0 0 1100 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <defs>
+        <linearGradient id="div1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#c96a00;stop-opacity:0.15"/>
+          <stop offset="100%" style="stop-color:#c96a00;stop-opacity:0.35"/>
+        </linearGradient>
+        <linearGradient id="con1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#007a5e;stop-opacity:0.35"/>
+          <stop offset="100%" style="stop-color:#007a5e;stop-opacity:0.15"/>
+        </linearGradient>
+        <linearGradient id="div2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#c96a00;stop-opacity:0.15"/>
+          <stop offset="100%" style="stop-color:#c96a00;stop-opacity:0.35"/>
+        </linearGradient>
+        <linearGradient id="con2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#007a5e;stop-opacity:0.35"/>
+          <stop offset="100%" style="stop-color:#007a5e;stop-opacity:0.15"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Diamond 1: Discover (diverge) -->
+      <polygon points="10,80 280,10 280,150" fill="url(#div1)" stroke="#c96a00" stroke-width="1.5"/>
+      <!-- Diamond 1: Define (converge) -->
+      <polygon points="280,10 550,80 280,150" fill="url(#con1)" stroke="#007a5e" stroke-width="1.5"/>
+      <!-- Diamond 2: Develop (diverge) -->
+      <polygon points="550,80 820,10 820,150" fill="url(#div2)" stroke="#c96a00" stroke-width="1.5"/>
+      <!-- Diamond 2: Deliver (converge) -->
+      <polygon points="820,10 1090,80 820,150" fill="url(#con2)" stroke="#007a5e" stroke-width="1.5"/>
+
+      <!-- Center dots -->
+      <circle cx="10" cy="80" r="5" fill="#c96a00"/>
+      <circle cx="550" cy="80" r="5" fill="#111029"/>
+      <circle cx="1090" cy="80" r="5" fill="#007a5e"/>
+
+      <!-- Phase labels inside -->
+      <text x="180" y="75" text-anchor="middle" font-family="Poppins,sans-serif" font-size="11" font-weight="700" fill="#c96a00">PROBLEMA</text>
+      <text x="180" y="92" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#c96a00" opacity="0.7">¿Qué ocurre?</text>
+      <text x="415" y="75" text-anchor="middle" font-family="Poppins,sans-serif" font-size="11" font-weight="700" fill="#007a5e">INSIGHT</text>
+      <text x="415" y="92" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#007a5e" opacity="0.7">¿Cuál importa?</text>
+      <text x="685" y="75" text-anchor="middle" font-family="Poppins,sans-serif" font-size="11" font-weight="700" fill="#c96a00">IDEAS</text>
+      <text x="685" y="92" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#c96a00" opacity="0.7">¿Cómo podría ser?</text>
+      <text x="955" y="75" text-anchor="middle" font-family="Poppins,sans-serif" font-size="11" font-weight="700" fill="#007a5e">SOLUCIÓN</text>
+      <text x="955" y="92" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#007a5e" opacity="0.7">¿Qué funciona?</text>
+    </svg>
+
+    <div class="diamond-zone-labels">
+      <div class="zone-badge div">◐ Diverge — Expansión del problema</div>
+      <div class="zone-badge con">◑ Converge — Expansión de soluciones</div>
+    </div>
+  </div>
+
+  <!-- 4 PHASE CARDS -->
+  <div class="phases-grid">
+
+    <!-- DISCOVER -->
+    <div class="phase-card discover">
+      <div class="phase-card-top"></div>
+      <div class="phase-card-header">
+        <div class="phase-num">◐ Fase 1 · Diverge</div>
+        <div class="phase-card-title">Discover</div>
+        <div class="phase-card-verb">Explorar el problema sin filtro</div>
+      </div>
+      <div class="phase-body">
+        <div class="question-box">¿Qué está pasando realmente? ¿Qué no sabemos aún?</div>
+        <div class="tools-label">Herramientas IA recomendadas</div>
+        <div class="tool-chip-list">
+          <span class="tool-chip chat">Claude</span>
+          <span class="tool-chip chat">ChatGPT</span>
+          <span class="tool-chip research">Perplexity</span>
+          <span class="tool-chip audio">Granola</span>
+          <span class="tool-chip chat">Gemini</span>
+          <span class="tool-chip research">NotebookLM</span>
+          <span class="tool-chip chat">Grok</span>
+        </div>
+        <div class="pm-note">Genera hipótesis de usuario, sintetiza entrevistas, busca benchmarks de industria</div>
+      </div>
+    </div>
+
+    <!-- DEFINE -->
+    <div class="phase-card define">
+      <div class="phase-card-top"></div>
+      <div class="phase-card-header">
+        <div class="phase-num">◑ Fase 2 · Converge</div>
+        <div class="phase-card-title">Define</div>
+        <div class="phase-card-verb">Priorizar el problema correcto</div>
+      </div>
+      <div class="phase-body">
+        <div class="question-box">¿Cuál es el problema real que vale la pena resolver?</div>
+        <div class="tools-label">Herramientas IA recomendadas</div>
+        <div class="tool-chip-list">
+          <span class="tool-chip chat">Claude</span>
+          <span class="tool-chip research">NotebookLM</span>
+          <span class="tool-chip chat">Gemini Gems</span>
+          <span class="tool-chip present">Gamma</span>
+          <span class="tool-chip chat">ChatGPT</span>
+        </div>
+        <div class="pm-note">Construye arquetipos, define HMW, estructura el problem statement, prioriza con frameworks</div>
+      </div>
+    </div>
+
+    <!-- DEVELOP -->
+    <div class="phase-card develop">
+      <div class="phase-card-top"></div>
+      <div class="phase-card-header">
+        <div class="phase-num">◐ Fase 3 · Diverge</div>
+        <div class="phase-card-title">Develop</div>
+        <div class="phase-card-verb">Generar múltiples soluciones</div>
+      </div>
+      <div class="phase-body">
+        <div class="question-box">¿Cuántas formas distintas podrían resolverlo?</div>
+        <div class="tools-label">Herramientas IA recomendadas</div>
+        <div class="tool-chip-list">
+          <span class="tool-chip proto">Bolt</span>
+          <span class="tool-chip proto">Lovable</span>
+          <span class="tool-chip design">Figma + IA</span>
+          <span class="tool-chip design">Canva</span>
+          <span class="tool-chip chat">Claude</span>
+          <span class="tool-chip present">Gamma</span>
+        </div>
+        <div class="pm-note">Genera prototipos rápidos, variaciones de UX, storyboards, flujos alternativos</div>
+      </div>
+    </div>
+
+    <!-- DELIVER -->
+    <div class="phase-card deliver">
+      <div class="phase-card-top"></div>
+      <div class="phase-card-header">
+        <div class="phase-num">◑ Fase 4 · Converge</div>
+        <div class="phase-card-title">Deliver</div>
+        <div class="phase-card-verb">Validar y construir</div>
+      </div>
+      <div class="phase-body">
+        <div class="question-box">¿Qué solución funciona y cómo lo medimos?</div>
+        <div class="tools-label">Herramientas IA recomendadas</div>
+        <div class="tool-chip-list">
+          <span class="tool-chip auto">n8n</span>
+          <span class="tool-chip auto">Make</span>
+          <span class="tool-chip auto">Google Studio</span>
+          <span class="tool-chip data">Mixpanel IA</span>
+          <span class="tool-chip chat">Claude</span>
+          <span class="tool-chip proto">Lovable</span>
+        </div>
+        <div class="pm-note">Automatiza flujos de test, conecta datos de uso, interpreta resultados de experimentos</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRODUCT LIFECYCLE ROW -->
+  <div class="lifecycle-section">
+    <div class="lifecycle-title">Referencia complementaria — Ciclo de vida del producto (para módulos siguientes)</div>
+    <div class="lifecycle-row">
+      <div class="lc-card">
+        <div class="lc-phase">Etapa 1</div>
+        <div class="lc-name">Discovery</div>
+        <div class="lc-tools">
+          <span class="tool-chip chat" style="font-size:0.58rem;">Claude</span>
+          <span class="tool-chip research" style="font-size:0.58rem;">Perplexity</span>
+          <span class="tool-chip audio" style="font-size:0.58rem;">Granola</span>
+        </div>
+      </div>
+      <div class="lc-card">
+        <div class="lc-phase">Etapa 2</div>
+        <div class="lc-name">Framing</div>
+        <div class="lc-tools">
+          <span class="tool-chip chat" style="font-size:0.58rem;">NotebookLM</span>
+          <span class="tool-chip present" style="font-size:0.58rem;">Gamma</span>
+          <span class="tool-chip chat" style="font-size:0.58rem;">Gemini Gems</span>
+        </div>
+      </div>
+      <div class="lc-card">
+        <div class="lc-phase">Etapa 3</div>
+        <div class="lc-name">Build</div>
+        <div class="lc-tools">
+          <span class="tool-chip proto" style="font-size:0.58rem;">Bolt</span>
+          <span class="tool-chip design" style="font-size:0.58rem;">Figma</span>
+          <span class="tool-chip proto" style="font-size:0.58rem;">Lovable</span>
+        </div>
+      </div>
+      <div class="lc-card">
+        <div class="lc-phase">Etapa 4</div>
+        <div class="lc-name">Launch</div>
+        <div class="lc-tools">
+          <span class="tool-chip auto" style="font-size:0.58rem;">Make</span>
+          <span class="tool-chip auto" style="font-size:0.58rem;">n8n</span>
+          <span class="tool-chip design" style="font-size:0.58rem;">Canva</span>
+        </div>
+      </div>
+      <div class="lc-card">
+        <div class="lc-phase">Etapa 5</div>
+        <div class="lc-name">Iterate</div>
+        <div class="lc-tools">
+          <span class="tool-chip data" style="font-size:0.58rem;">Analytics IA</span>
+          <span class="tool-chip auto" style="font-size:0.58rem;">Google Studio</span>
+          <span class="tool-chip chat" style="font-size:0.58rem;">Claude</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="footer-module">Insights, Comportamiento y Oportunidades de Producto</div>
+      <div class="footer-sub">Módulo 2 de 7 · Diplomado de Producto · Pieza 1: Double Diamond + IA</div>
+    </div>
+    <div class="footer-ref">Design Council (2005) · Double Diamond<br>Adaptado al contexto IA 2025</div>
+  </div>
+
+</div>
+</body>
+</html>

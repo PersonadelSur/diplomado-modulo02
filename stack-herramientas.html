@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stack de Herramientas IA — Cuándo y Para Qué</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f5f5;
+  --white: #ffffff;
+  --black: #000000;
+  --body: #111029;
+  --accent: #1500ff;
+  --accent-bg: rgba(21,0,255,0.06);
+  --accent-border: rgba(21,0,255,0.16);
+  --diverge: #c96a00;
+  --diverge-bg: rgba(201,106,0,0.08);
+  --converge: #007a5e;
+  --converge-bg: rgba(0,122,94,0.08);
+  --border: rgba(0,0,0,0.09);
+  --border-strong: rgba(0,0,0,0.15);
+  --dim: #666677;
+  --xdim: #999aaa;
+  --font: 'Poppins', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--body); }
+
+.page { max-width: 1200px; margin: 0 auto; padding: 48px 40px 72px; }
+
+.header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 40px; padding-bottom: 22px; border-bottom: 2px solid var(--black);
+}
+.eyebrow { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 6px; }
+.h-title { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; color: var(--black); line-height: 1.1; letter-spacing: -0.03em; }
+.h-title span { color: var(--accent); }
+.h-sub { font-size: 0.76rem; color: var(--dim); margin-top: 6px; }
+.header-tag { background: var(--black); color: var(--white); font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 14px; border-radius: 4px; }
+
+/* CATEGORY LEGEND */
+.cat-legend {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px;
+}
+.cat-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.65rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 999px; border: 1px solid;
+}
+.cat-item.chat { color: var(--accent); border-color: rgba(21,0,255,0.2); background: var(--accent-bg); }
+.cat-item.research { color: #006b3f; border-color: rgba(0,107,63,0.22); background: rgba(0,107,63,0.06); }
+.cat-item.audio { color: #7a0060; border-color: rgba(122,0,96,0.22); background: rgba(122,0,96,0.06); }
+.cat-item.design { color: #8a4a00; border-color: rgba(138,74,0,0.22); background: rgba(138,74,0,0.06); }
+.cat-item.proto { color: #003f8a; border-color: rgba(0,63,138,0.22); background: rgba(0,63,138,0.06); }
+.cat-item.present { color: #5a006b; border-color: rgba(90,0,107,0.22); background: rgba(90,0,107,0.06); }
+.cat-item.auto { color: #006060; border-color: rgba(0,96,96,0.22); background: rgba(0,96,96,0.06); }
+
+/* TABLE */
+.table-wrap {
+  background: var(--white);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+table { width: 100%; border-collapse: collapse; }
+
+thead tr { background: var(--black); }
+thead th {
+  padding: 12px 16px;
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--white); text-align: left;
+}
+thead th:first-child { border-radius: 0; }
+
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.12s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--bg); }
+
+/* category row headers */
+.cat-row td {
+  padding: 8px 16px;
+  font-size: 0.58rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border-strong);
+}
+.cat-row.chat td { color: var(--accent); }
+.cat-row.research td { color: #006b3f; }
+.cat-row.audio td { color: #7a0060; }
+.cat-row.design td { color: #8a4a00; }
+.cat-row.proto td { color: #003f8a; }
+.cat-row.present td { color: #5a006b; }
+.cat-row.auto td { color: #006060; }
+
+td { padding: 12px 16px; vertical-align: top; }
+
+.tool-name {
+  font-size: 0.84rem; font-weight: 700; color: var(--black);
+  margin-bottom: 2px;
+}
+.tool-free {
+  font-size: 0.58rem; font-weight: 600; padding: 1px 6px;
+  border-radius: 3px; display: inline-block; margin-left: 6px;
+}
+.tool-free.free { color: #007a5e; background: rgba(0,122,94,0.1); border: 1px solid rgba(0,122,94,0.2); }
+.tool-free.paid { color: var(--diverge); background: var(--diverge-bg); border: 1px solid rgba(201,106,0,0.2); }
+.tool-free.both { color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); }
+
+.tool-desc { font-size: 0.72rem; color: var(--dim); line-height: 1.4; }
+
+td.when { font-size: 0.72rem; color: var(--body); line-height: 1.5; }
+
+.phase-pills { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.phase-pill {
+  font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+  padding: 2px 7px; border-radius: 3px;
+}
+.phase-pill.discover { color: var(--diverge); background: var(--diverge-bg); }
+.phase-pill.define { color: var(--converge); background: var(--converge-bg); }
+.phase-pill.develop { color: var(--diverge); background: var(--diverge-bg); }
+.phase-pill.deliver { color: var(--converge); background: var(--converge-bg); }
+
+.use-list { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+.use-list li {
+  font-size: 0.71rem; color: var(--body); line-height: 1.4;
+  padding-left: 12px; position: relative;
+}
+.use-list li::before { content: '→'; position: absolute; left: 0; color: var(--xdim); font-size: 0.65rem; }
+
+.pm-cell {
+  font-size: 0.7rem; font-weight: 500; color: var(--accent);
+  font-style: italic; line-height: 1.4;
+}
+
+.footer {
+  margin-top: 40px; padding-top: 20px; border-top: 1.5px solid var(--black);
+  display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;
+}
+.footer-module { font-size: 0.72rem; font-weight: 700; color: var(--black); }
+.footer-sub { font-size: 0.62rem; color: var(--dim); margin-top: 2px; }
+.footer-ref { font-size: 0.62rem; color: var(--accent); font-weight: 500; text-align: right; }
+</style>
+<style>
+body { padding-top: 52px !important; }
+</style>
+</head>
+<body>
+<!-- NAV HEADER -->
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-thin">Módulo 2</span>
+      <span class="nav-brand-sep">|</span>
+      <span class="nav-brand-bold">Insights, Comportamiento y Oportunidades de Producto</span>
+    </a>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="guia-workshop.html" class="nav-link">Guía Workshop</a>
+      <a href="double-diamond.html" class="nav-link">Double Diamond</a>
+      <a href="stack-herramientas.html" class="nav-link">Stack de Herramientas</a>
+      <a href="diverger-converger.html" class="nav-link">Diverger · Converger</a>
+      <a href="capas-ia.html" class="nav-link">Capas de Inteligencia Artificial <span class="nav-badge">Adelanto</span></a>
+    </div>
+  </div>
+</nav>
+<style>
+#site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #111029;
+  border-bottom: 2px solid #1500ff;
+  font-family: 'Poppins', sans-serif;
+}
+.nav-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+  margin-right: 32px;
+}
+.nav-brand-thin {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.nav-brand-sep {
+  font-size: 0.7rem;
+  color: #1500ff;
+  font-weight: 300;
+}
+.nav-brand-bold {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 340px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+.nav-link {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,0.07);
+}
+.nav-link.active {
+  color: #ffffff;
+  background: rgba(21,0,255,0.25);
+  border: 1px solid rgba(21,0,255,0.4);
+}
+.nav-badge {
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(21,0,255,0.3);
+  color: #8899ff;
+  border: 1px solid rgba(21,0,255,0.35);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+}
+.nav-toggle span {
+  display: block;
+  width: 20px; height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+@media (max-width: 900px) {
+  .nav-brand-bold { max-width: 160px; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 52px; left: 0; right: 0;
+    background: #111029;
+    border-bottom: 2px solid #1500ff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 16px 16px;
+    gap: 2px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-link { width: 100%; }
+}
+</style>
+<script>
+function toggleNav() {
+  document.getElementById('nav-links').classList.toggle('open');
+}
+// Mark active link
+(function() {
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  var links = document.querySelectorAll('.nav-link');
+  links.forEach(function(l) {
+    if (l.getAttribute('href') === path) l.classList.add('active');
+  });
+})();
+</script>
+
+<div class="page">
+
+  <div class="header">
+    <div>
+      <div class="eyebrow">Módulo 2 · Insights, Comportamiento y Oportunidades de Producto</div>
+      <div class="h-title">Stack de <span>Herramientas IA</span><br>Qué usar, cuándo y para qué</div>
+      <div class="h-sub">Referencia para Product Owners y Product Managers · Double Diamond aplicado</div>
+    </div>
+    <div class="header-tag">Pieza 2 de 5</div>
+  </div>
+
+  <div class="cat-legend">
+    <div class="cat-item chat">● Chats IA</div>
+    <div class="cat-item research">● Investigación profunda</div>
+    <div class="cat-item audio">● Transcripción / Audio</div>
+    <div class="cat-item design">● Diseño</div>
+    <div class="cat-item proto">● Prototipado</div>
+    <div class="cat-item present">● Presentaciones</div>
+    <div class="cat-item auto">● Automatización</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%">Herramienta</th>
+          <th style="width:14%">Fase Diamond</th>
+          <th style="width:36%">Para qué usarla (como PM/PO)</th>
+          <th style="width:32%">Capacidad clave en Discovery</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- CHATS IA -->
+        <tr class="cat-row chat"><td colspan="4">● Chats IA Generativa</td></tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Claude <span class="tool-free both">Free + Pro</span></div>
+            <div class="tool-desc">Anthropic · Razonamiento largo, archivos, análisis</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill discover">Discover</span>
+              <span class="phase-pill define">Define</span>
+              <span class="phase-pill develop">Develop</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Sintetizar entrevistas de usuario en insights accionables</li>
+              <li>Analizar documentos largos (research, reportes, transcripciones)</li>
+              <li>Generar arquetipos y problem statements estructurados</li>
+              <li>Construir frameworks de priorización (RICE, MoSCoW)</li>
+            </ul>
+          </td>
+          <td class="pm-cell">Ideal para trabajar con contexto largo — sube tus entrevistas y pide síntesis por patrones de comportamiento</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">ChatGPT <span class="tool-free both">Free + Plus</span></div>
+            <div class="tool-desc">OpenAI · GPT-4o, análisis, generación</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill discover">Discover</span>
+              <span class="phase-pill define">Define</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Generar hipótesis de usuario desde cero</li>
+              <li>Comparar frameworks de producto y metodologías</li>
+              <li>Crear estructuras de entrevistas semi-estructuradas</li>
+            </ul>
+          </td>
+          <td class="pm-cell">GPT-4o con visión permite analizar wireframes y capturas de pantalla para feedback de UX</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Gemini <span class="tool-free both">Free + Advanced</span></div>
+            <div class="tool-desc">Google · Integración con Workspace, multimedia</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill discover">Discover</span>
+              <span class="phase-pill define">Define</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Analizar datos de Google Sheets directamente</li>
+              <li>Integrar con Gmail y Docs para síntesis de conversaciones</li>
+              <li>Gemini Gems: agentes especializados por rol de investigación</li>
+            </ul>
+          </td>
+          <td class="pm-cell">Los Gems permiten crear un "investigador de usuario" especializado que mantiene contexto de tu producto</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Grok <span class="tool-free both">Free + X Premium</span></div>
+            <div class="tool-desc">xAI · Acceso a datos en tiempo real de X/Twitter</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill discover">Discover</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Detectar tendencias emergentes de usuarios en redes sociales</li>
+              <li>Analizar conversaciones reales sobre tu categoría de producto</li>
+              <li>Benchmark de competidores desde señales sociales</li>
+            </ul>
+          </td>
+          <td class="pm-cell">Único en acceso a datos de X en tiempo real — útil para detectar dolor de usuarios que expresan frustración pública</td>
+        </tr>
+
+        <!-- RESEARCH -->
+        <tr class="cat-row research"><td colspan="4">● Investigación Profunda</td></tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Perplexity <span class="tool-free both">Free + Pro</span></div>
+            <div class="tool-desc">Búsqueda con IA · Fuentes citadas, actualizado</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill discover">Discover</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Benchmark de competidores con fuentes verificables</li>
+              <li>Investigar tendencias de industria con información actualizada</li>
+              <li>Contexto de mercado antes de iniciar discovery</li>
+            </ul>
+          </td>
+          <td class="pm-cell">A diferencia de otros chats, cita fuentes — fundamental cuando necesitas evidencia para sustentar decisiones ante stakeholders</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">NotebookLM <span class="tool-free free">Gratuito</span></div>
+            <div class="tool-desc">Google · Base de conocimiento con tus propios archivos</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill discover">Discover</span>
+              <span class="phase-pill define">Define</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Subir todas las entrevistas y extraer patrones comunes</li>
+              <li>Crear una base de conocimiento del usuario que persiste</li>
+              <li>Hacer preguntas cruzadas entre múltiples documentos de research</li>
+              <li>Generar podcasts de audio de tus insights para el equipo</li>
+            </ul>
+          </td>
+          <td class="pm-cell">El PM lo usa como "cerebro del research" — consolida todo el conocimiento cualitativo del equipo en un solo lugar consultable</td>
+        </tr>
+
+        <!-- AUDIO -->
+        <tr class="cat-row audio"><td colspan="4">● Transcripción y Análisis de Entrevistas</td></tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Granola <span class="tool-free both">Free + Pro</span></div>
+            <div class="tool-desc">Transcripción IA de reuniones con síntesis automática</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill discover">Discover</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Transcribir entrevistas de usuario automáticamente</li>
+              <li>Generar resúmenes con highlights y citas clave</li>
+              <li>Exportar transcripciones para análisis en NotebookLM o Claude</li>
+            </ul>
+          </td>
+          <td class="pm-cell">Elimina la carga de transcripción manual — el PM puede focalizarse en escuchar y preguntar durante la entrevista</td>
+        </tr>
+
+        <!-- DESIGN -->
+        <tr class="cat-row design"><td colspan="4">● Diseño Visual y Presentación</td></tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Canva IA <span class="tool-free both">Free + Pro</span></div>
+            <div class="tool-desc">Diseño con IA generativa integrada · Magic Design</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill define">Define</span>
+              <span class="phase-pill develop">Develop</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Crear journey maps y arquetipos visualmente</li>
+              <li>Diseñar entregables de research para presentar a stakeholders</li>
+              <li>Generar imágenes para personas y escenarios de usuario</li>
+            </ul>
+          </td>
+          <td class="pm-cell">Convierte tus insights en materiales visuales sin necesidad de un diseñador — ideal para presentaciones internas rápidas</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Gamma <span class="tool-free both">Free + Pro</span></div>
+            <div class="tool-desc">Presentaciones generadas con IA desde texto o prompt</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill define">Define</span>
+              <span class="phase-pill deliver">Deliver</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Crear presentaciones de hallazgos de research en minutos</li>
+              <li>Documentar el problem statement para alineación del equipo</li>
+              <li>Convertir un documento de insights en deck ejecutivo</li>
+            </ul>
+          </td>
+          <td class="pm-cell">El PM pega su síntesis de research y genera una presentación lista para stakeholders — reduce tiempo de comunicación dramáticamente</td>
+        </tr>
+
+        <!-- PROTO -->
+        <tr class="cat-row proto"><td colspan="4">● Prototipado Rápido (Referencia Módulos 3–6)</td></tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Bolt <span class="tool-free both">Free + Pro</span></div>
+            <div class="tool-desc">Generación de apps web desde texto · StackBlitz</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill develop">Develop</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Prototipo funcional de una hipótesis de solución en horas</li>
+              <li>Generar UI para validar flows antes de involucrar al equipo de dev</li>
+            </ul>
+          </td>
+          <td class="pm-cell">Permite al PM crear un MVP clicable para probar con usuarios sin depender del sprint — acorta el ciclo de validación</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Lovable <span class="tool-free both">Free + Pro</span></div>
+            <div class="tool-desc">Generación de apps React desde conversación</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill develop">Develop</span>
+              <span class="phase-pill deliver">Deliver</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Crear prototipos de alta fidelidad funcionales para test de usabilidad</li>
+              <li>Iterar visualmente el producto en conversación con el equipo</li>
+            </ul>
+          </td>
+          <td class="pm-cell">Más potente que Bolt para productos complejos — útil cuando el prototipo necesita lógica de negocio real</td>
+        </tr>
+
+        <!-- AUTOMATION -->
+        <tr class="cat-row auto"><td colspan="4">● Automatización y Flujos de Trabajo (Referencia Módulos 5–6)</td></tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">n8n <span class="tool-free both">Free + Cloud</span></div>
+            <div class="tool-desc">Automatización open source · Flujos visuales con IA</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill deliver">Deliver</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Automatizar recopilación de feedback de usuarios</li>
+              <li>Conectar herramientas del stack de producto sin código</li>
+              <li>Flujos de síntesis: entrevista → transcripción → resumen → Notion</li>
+            </ul>
+          </td>
+          <td class="pm-cell">El PM orquesta el pipeline de datos de usuario sin depender de engineering — reduce tiempo de ciclo de aprendizaje</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Make <span class="tool-free both">Free + Pro</span></div>
+            <div class="tool-desc">Automatización visual · Integración con 1000+ apps</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill deliver">Deliver</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Conectar formularios de research con Notion o Sheets automáticamente</li>
+              <li>Automatizar notificaciones de métricas de producto al equipo</li>
+            </ul>
+          </td>
+          <td class="pm-cell">Más accesible que n8n para equipos sin perfil técnico — buena entrada a automatización de workflows de discovery</td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="tool-name">Google Workspace Studio <span class="tool-free free">Gratuito</span></div>
+            <div class="tool-desc">IA integrada en Google Sheets, Docs, Slides · Gemini</div>
+          </td>
+          <td>
+            <div class="phase-pills">
+              <span class="phase-pill define">Define</span>
+              <span class="phase-pill deliver">Deliver</span>
+            </div>
+          </td>
+          <td>
+            <ul class="use-list">
+              <li>Analizar datos de usuario directamente en Sheets con IA</li>
+              <li>Generar resúmenes de documentos de research en Docs</li>
+              <li>Crear dashboards de métricas con asistencia de IA</li>
+            </ul>
+          </td>
+          <td class="pm-cell">Si el equipo ya usa Google Workspace, es el punto de entrada más rápido a IA sin cambiar de herramientas</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="footer-module">Insights, Comportamiento y Oportunidades de Producto</div>
+      <div class="footer-sub">Módulo 2 de 7 · Pieza 2: Stack de Herramientas IA — Cuándo y Para Qué</div>
+    </div>
+    <div class="footer-ref">Herramientas verificadas al 2025<br>Versiones y disponibilidad sujetas a cambio</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Las Capas de la IA — Guía Integradora · Módulo 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f5f5;
+  --white: #ffffff;
+  --black: #000000;
+  --body: #111029;
+  --accent: #1500ff;
+  --accent-bg: rgba(21,0,255,0.06);
+  --accent-border: rgba(21,0,255,0.16);
+  --accent-strong: rgba(21,0,255,0.12);
+  --diverge: #c96a00;
+  --diverge-bg: rgba(201,106,0,0.07);
+  --diverge-border: rgba(201,106,0,0.2);
+  --converge: #007a5e;
+  --converge-bg: rgba(0,122,94,0.07);
+  --converge-border: rgba(0,122,94,0.2);
+  --synth: #4a22b8;
+  --synth-bg: rgba(74,34,184,0.07);
+  --synth-border: rgba(74,34,184,0.2);
+  --border: rgba(0,0,0,0.09);
+  --border-strong: rgba(0,0,0,0.14);
+  --dim: #666677;
+  --xdim: #aaaabb;
+  --font: 'Poppins', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--body); }
+
+.page { max-width: 1200px; margin: 0 auto; padding: 48px 40px 72px; }
+
+/* HEADER */
+.header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: 44px; padding-bottom: 22px; border-bottom: 2px solid var(--black);
+}
+.eyebrow { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 6px; }
+.h-title { font-size: clamp(1.4rem, 2.8vw, 2.1rem); font-weight: 800; color: var(--black); line-height: 1.1; letter-spacing: -0.03em; }
+.h-title span { color: var(--accent); }
+.h-sub { font-size: 0.76rem; color: var(--dim); margin-top: 6px; max-width: 600px; line-height: 1.5; }
+.header-tag { background: var(--black); color: var(--white); font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 14px; border-radius: 4px; white-space: nowrap; }
+
+/* SECTION */
+.section { margin-bottom: 44px; }
+.section-label {
+  font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--accent); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border-strong); }
+.section-title { font-size: clamp(1rem, 1.8vw, 1.3rem); font-weight: 700; color: var(--black); margin-bottom: 8px; }
+.section-lead { font-size: 0.82rem; color: var(--body); line-height: 1.7; max-width: 780px; margin-bottom: 24px; }
+
+/* LAYERS STACK */
+.layers-stack {
+  display: flex; flex-direction: column; gap: 0;
+  background: var(--white);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.layer {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+.layer:last-child { border-bottom: none; }
+.layer:hover { background: var(--bg); }
+
+.layer-left {
+  padding: 20px 20px;
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; justify-content: center;
+}
+
+.layer-num {
+  font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.layer-name {
+  font-size: 1rem; font-weight: 800; color: var(--black);
+  margin-bottom: 3px;
+}
+
+.layer-tag {
+  font-size: 0.6rem; font-weight: 600; padding: 2px 8px;
+  border-radius: 4px; display: inline-block;
+}
+
+/* Layer colors */
+.layer.prompt .layer-num { color: #8a4a00; }
+.layer.prompt .layer-tag { color: #8a4a00; background: rgba(138,74,0,0.1); border: 1px solid rgba(138,74,0,0.2); }
+.layer.prompt { border-left: 4px solid #c96a00; }
+
+.layer.context .layer-num { color: var(--accent); }
+.layer.context .layer-tag { color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); }
+.layer.context { border-left: 4px solid var(--accent); }
+
+.layer.intent .layer-num { color: #007a5e; }
+.layer.intent .layer-tag { color: #007a5e; background: var(--converge-bg); border: 1px solid var(--converge-border); }
+.layer.intent { border-left: 4px solid #007a5e; }
+
+.layer.spec .layer-num { color: var(--synth); }
+.layer.spec .layer-tag { color: var(--synth); background: var(--synth-bg); border: 1px solid var(--synth-border); }
+.layer.spec { border-left: 4px solid var(--synth); }
+
+.layer.connect .layer-num { color: #5a006b; }
+.layer.connect .layer-tag { color: #5a006b; background: rgba(90,0,107,0.07); border: 1px solid rgba(90,0,107,0.2); }
+.layer.connect { border-left: 4px solid #5a006b; }
+
+.layer-mid {
+  padding: 20px 20px;
+  border-right: 1px solid var(--border);
+}
+.layer-what { font-size: 0.73rem; color: var(--body); line-height: 1.6; margin-bottom: 10px; }
+.layer-example {
+  font-size: 0.66rem; font-style: italic; color: var(--dim);
+  padding: 6px 10px; background: var(--bg); border-radius: 6px;
+  border-left: 2px solid var(--border-strong); line-height: 1.5;
+}
+
+.layer-right { padding: 20px 20px; }
+.layer-pm-label {
+  font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--accent); margin-bottom: 6px;
+}
+.layer-pm-text { font-size: 0.72rem; font-weight: 500; color: var(--accent); line-height: 1.55; }
+
+.layer-tools { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.layer-tool {
+  font-size: 0.58rem; font-weight: 600; padding: 2px 8px;
+  border-radius: 999px; border: 1px solid;
+  color: var(--dim); border-color: var(--border-strong); background: var(--bg);
+}
+
+/* TEASER SECTION */
+.teaser-box {
+  background: var(--black);
+  border-radius: 16px;
+  padding: 32px 36px;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.teaser-left {}
+.teaser-eyebrow {
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.18em; color: rgba(255,255,255,0.4); margin-bottom: 8px;
+}
+.teaser-title {
+  font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 800; color: var(--white);
+  line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 12px;
+}
+.teaser-title span { color: #6b8fff; }
+.teaser-desc {
+  font-size: 0.78rem; color: rgba(255,255,255,0.65); line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.teaser-right {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+.teaser-modules { display: flex; flex-direction: column; gap: 8px; }
+.teaser-mod {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.teaser-mod:last-child { border-bottom: none; }
+.mod-num {
+  font-size: 0.58rem; font-weight: 800; color: rgba(255,255,255,0.3);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  width: 24px; flex-shrink: 0; padding-top: 2px;
+}
+.mod-name { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.8); line-height: 1.4; }
+.mod-sub { font-size: 0.62rem; color: rgba(255,255,255,0.4); margin-top: 1px; }
+.mod-active .mod-name { color: #6b8fff; }
+.mod-active .mod-num { color: #6b8fff; }
+
+/* AUTOMATION TEASER */
+.auto-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.auto-card {
+  background: var(--white);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 12px;
+  padding: 18px 18px;
+  border-top: 4px solid #006060;
+}
+
+.auto-card-title { font-size: 0.88rem; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+.auto-card-tag {
+  font-size: 0.58rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: #006060;
+  background: rgba(0,96,96,0.08); border: 1px solid rgba(0,96,96,0.2);
+  padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px;
+}
+.auto-card-desc { font-size: 0.73rem; color: var(--body); line-height: 1.55; margin-bottom: 10px; }
+.auto-example {
+  font-size: 0.67rem; color: var(--dim); font-style: italic;
+  padding: 8px 10px; background: var(--bg); border-radius: 6px;
+  line-height: 1.5;
+}
+
+/* INTEGRATION NOTE */
+.integration-note {
+  background: var(--accent-bg);
+  border: 1.5px solid var(--accent-border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.integration-icon { font-size: 1.6rem; }
+.integration-title { font-size: 0.84rem; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.integration-text { font-size: 0.75rem; color: var(--body); line-height: 1.65; }
+
+/* FOOTER */
+.footer {
+  margin-top: 20px; padding-top: 20px; border-top: 1.5px solid var(--black);
+  display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;
+}
+.footer-module { font-size: 0.72rem; font-weight: 700; color: var(--black); }
+.footer-sub { font-size: 0.62rem; color: var(--dim); margin-top: 2px; }
+
+@media (max-width: 900px) {
+  .layer { grid-template-columns: 1fr; }
+  .teaser-box { grid-template-columns: 1fr; }
+  .auto-row { grid-template-columns: 1fr; }
+}
+</style>
+<style>
+body { padding-top: 52px !important; }
+</style>
+</head>
+<body>
+<!-- NAV HEADER -->
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-thin">Módulo 2</span>
+      <span class="nav-brand-sep">|</span>
+      <span class="nav-brand-bold">Insights, Comportamiento y Oportunidades de Producto</span>
+    </a>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+      <a href="guia-workshop.html" class="nav-link">Guía Workshop</a>
+      <a href="double-diamond.html" class="nav-link">Double Diamond</a>
+      <a href="stack-herramientas.html" class="nav-link">Stack de Herramientas</a>
+      <a href="diverger-converger.html" class="nav-link">Diverger · Converger</a>
+      <a href="capas-ia.html" class="nav-link">Capas de Inteligencia Artificial <span class="nav-badge">Adelanto</span></a>
+    </div>
+  </div>
+</nav>
+<style>
+#site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #111029;
+  border-bottom: 2px solid #1500ff;
+  font-family: 'Poppins', sans-serif;
+}
+.nav-inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  flex-shrink: 0;
+  margin-right: 32px;
+}
+.nav-brand-thin {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.nav-brand-sep {
+  font-size: 0.7rem;
+  color: #1500ff;
+  font-weight: 300;
+}
+.nav-brand-bold {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 340px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+.nav-link {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255,255,255,0.07);
+}
+.nav-link.active {
+  color: #ffffff;
+  background: rgba(21,0,255,0.25);
+  border: 1px solid rgba(21,0,255,0.4);
+}
+.nav-badge {
+  font-size: 0.52rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(21,0,255,0.3);
+  color: #8899ff;
+  border: 1px solid rgba(21,0,255,0.35);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+}
+.nav-toggle span {
+  display: block;
+  width: 20px; height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+@media (max-width: 900px) {
+  .nav-brand-bold { max-width: 160px; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 52px; left: 0; right: 0;
+    background: #111029;
+    border-bottom: 2px solid #1500ff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 16px 16px;
+    gap: 2px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-link { width: 100%; }
+}
+</style>
+<script>
+function toggleNav() {
+  document.getElementById('nav-links').classList.toggle('open');
+}
+// Mark active link
+(function() {
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  var links = document.querySelectorAll('.nav-link');
+  links.forEach(function(l) {
+    if (l.getAttribute('href') === path) l.classList.add('active');
+  });
+})();
+</script>
+
+<div class="page">
+
+  <div class="header">
+    <div>
+      <div class="eyebrow">Módulo 2 · Insights, Comportamiento y Oportunidades de Producto</div>
+      <div class="h-title">Las <span>Capas de la IA</span><br>Guía Integradora</div>
+      <div class="h-sub">Por qué el resultado de una herramienta IA depende de cómo la alimentas — y qué viene más adelante en el diplomado</div>
+    </div>
+    <div class="header-tag">Pieza 5 de 5</div>
+  </div>
+
+  <!-- LAYERS SECTION -->
+  <div class="section">
+    <div class="section-label">Las capas que determinan la calidad del output</div>
+    <div class="section-title">No es la herramienta. Es cómo la usas.</div>
+    <div class="section-lead">Dos PMs con la misma herramienta obtienen resultados radicalmente distintos. La diferencia no está en el modelo — está en las capas de trabajo que cada uno aporta. Estas son las 5 capas que debes entender ahora, aunque profundizarás en ellas en el Módulo 6.</div>
+
+    <div class="layers-stack">
+
+      <div class="layer prompt">
+        <div class="layer-left">
+          <div class="layer-num">Capa 1</div>
+          <div class="layer-name">Prompt</div>
+          <div class="layer-tag">La instrucción</div>
+        </div>
+        <div class="layer-mid">
+          <div class="layer-what">La forma en que formulas la pregunta determina el tipo de respuesta. Un prompt vago genera outputs genéricos. Un prompt con rol, restricciones y formato esperado genera outputs accionables.</div>
+          <div class="layer-example">"Dame ideas de producto" → genérico · "Eres PM de una app de transporte. Dame 10 hipótesis de abandono del flujo de pago, ordenadas de más a menos frecuente, en formato lista numerada" → útil</div>
+        </div>
+        <div class="layer-right">
+          <div class="layer-pm-label">El PM lo aplica cuando…</div>
+          <div class="layer-pm-text">Especifica el rol, el contexto del producto, el formato esperado y las restricciones antes de hacer la pregunta.</div>
+          <div class="layer-tools">
+            <span class="layer-tool">Claude</span>
+            <span class="layer-tool">ChatGPT</span>
+            <span class="layer-tool">Gemini</span>
+            <span class="layer-tool">Grok</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer context">
+        <div class="layer-left">
+          <div class="layer-num">Capa 2</div>
+          <div class="layer-name">Context</div>
+          <div class="layer-tag">La información</div>
+        </div>
+        <div class="layer-mid">
+          <div class="layer-what">La IA no sabe nada de tu producto si no se lo dices. Subir archivos, pegar transcripciones, adjuntar datos reales transforma un chat genérico en un analista que conoce tu contexto.</div>
+          <div class="layer-example">Subir 5 transcripciones de entrevistas + pedir síntesis de patrones → la IA trabaja con evidencia real, no suposiciones genéricas de industria</div>
+        </div>
+        <div class="layer-right">
+          <div class="layer-pm-label">El PM lo aplica cuando…</div>
+          <div class="layer-pm-text">Carga documentos de research, datos de uso, feedback de usuarios y reportes antes de hacer cualquier análisis con IA.</div>
+          <div class="layer-tools">
+            <span class="layer-tool">NotebookLM</span>
+            <span class="layer-tool">Claude (archivos)</span>
+            <span class="layer-tool">Gemini Gems</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer intent">
+        <div class="layer-left">
+          <div class="layer-num">Capa 3</div>
+          <div class="layer-name">Intent</div>
+          <div class="layer-tag">El objetivo</div>
+        </div>
+        <div class="layer-mid">
+          <div class="layer-what">¿Para qué vas a usar el output? ¿Para presentar a stakeholders, para guiar una entrevista, para priorizar el backlog? El intent cambia el tono, el nivel de detalle y el formato óptimo.</div>
+          <div class="layer-example">"Quiero este análisis para presentarlo a un comité ejecutivo en 5 minutos" → la IA ajusta densidad, jerarquía visual y lenguaje ejecutivo automáticamente</div>
+        </div>
+        <div class="layer-right">
+          <div class="layer-pm-label">El PM lo aplica cuando…</div>
+          <div class="layer-pm-text">Declara explícitamente la audiencia y el uso del output: "esto es para el equipo de dev", "esto es para el CEO", "esto es para guía interna".</div>
+          <div class="layer-tools">
+            <span class="layer-tool">Gamma</span>
+            <span class="layer-tool">Claude</span>
+            <span class="layer-tool">ChatGPT</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer spec">
+        <div class="layer-left">
+          <div class="layer-num">Capa 4</div>
+          <div class="layer-name">Especificación</div>
+          <div class="layer-tag">El formato</div>
+        </div>
+        <div class="layer-mid">
+          <div class="layer-what">Definir el formato de salida — tabla, lista numerada, JSON, párrafo ejecutivo, bullet points — elimina ambigüedad y reduce el trabajo de post-procesamiento. Especificar es eficiencia.</div>
+          <div class="layer-example">"Responde en una tabla de 3 columnas: Insight | Evidencia | Acción recomendada. Máximo 6 filas." → output listo para pegar en Notion o presentación</div>
+        </div>
+        <div class="layer-right">
+          <div class="layer-pm-label">El PM lo aplica cuando…</div>
+          <div class="layer-pm-text">Siempre especifica longitud, estructura y formato antes de enviar el prompt — ahorra tiempo de edición post-generación.</div>
+          <div class="layer-tools">
+            <span class="layer-tool">Todos los chats IA</span>
+            <span class="layer-tool">Gemini Gems</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="layer connect">
+        <div class="layer-left">
+          <div class="layer-num">Capa 5</div>
+          <div class="layer-name">Conexión</div>
+          <div class="layer-tag">La integración</div>
+        </div>
+        <div class="layer-mid">
+          <div class="layer-what">El mayor salto de productividad ocurre cuando las herramientas se conectan entre sí: Granola transcribe → Claude sintetiza → Gamma presenta → Notion almacena. El PM orquesta el flujo.</div>
+          <div class="layer-example">Entrevista grabada → Granola transcribe → Claude extrae insights → NotebookLM almacena → n8n envía resumen al canal de Slack del equipo automáticamente</div>
+        </div>
+        <div class="layer-right">
+          <div class="layer-pm-label">El PM lo aplica cuando…</div>
+          <div class="layer-pm-text">Diseña el pipeline de datos del equipo: define qué entra, qué herramienta procesa, qué sale y dónde se almacena. Se profundiza en Módulo 6.</div>
+          <div class="layer-tools">
+            <span class="layer-tool">n8n</span>
+            <span class="layer-tool">Make</span>
+            <span class="layer-tool">Google Studio</span>
+            <span class="layer-tool">Zapier</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- INTEGRATION NOTE -->
+    <div class="integration-note">
+      <div class="integration-icon">⚡</div>
+      <div>
+        <div class="integration-title">Principio clave: la IA es tan útil como la información que le das</div>
+        <div class="integration-text">Un PM que trabaja con contexto rico (archivos reales, datos de usuarios, documentos del producto) obtiene outputs 10x más útiles que uno que solo pregunta desde cero. <strong>El trabajo previo de recolección de información es parte del trabajo de IA.</strong> Cargar bien el contexto no es opcional — es la diferencia entre un asistente genérico y un analista que entiende tu producto.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTOMATION SECTION -->
+  <div class="section">
+    <div class="section-label">Automatización — lo que viene en módulos 5 y 6</div>
+    <div class="section-title">Cuando las herramientas se conectan solas</div>
+    <div class="section-lead">La automatización es la capa que multiplica el impacto. En lugar de hacer cada paso manualmente, el PM diseña flujos que conectan herramientas y ejecutan tareas repetitivas automáticamente. Aquí una preview de lo que construirás más adelante.</div>
+
+    <div class="auto-row">
+      <div class="auto-card">
+        <div class="auto-card-title">n8n</div>
+        <div class="auto-card-tag">Open Source · Autoalojado o Cloud</div>
+        <div class="auto-card-desc">Automatización de flujos visuales con nodos conectables. Permite integrar cualquier herramienta con API — incluyendo Claude, Notion, Google Sheets, Slack y más — sin código.</div>
+        <div class="auto-example">Flujo ejemplo: Typeform (feedback) → n8n → Claude API (síntesis) → Notion (almacena insight) → Slack (notifica al equipo)</div>
+      </div>
+      <div class="auto-card">
+        <div class="auto-card-title">Make (antes Integromat)</div>
+        <div class="auto-card-tag">SaaS · Más accesible para no-técnicos</div>
+        <div class="auto-card-desc">Similar a n8n pero con interfaz más visual y menor curva de aprendizaje. Ideal para equipos sin perfil técnico que quieren automatizar sin instalar nada.</div>
+        <div class="auto-example">Flujo ejemplo: Google Forms (entrevista) → Make → ChatGPT (extrae citas) → Google Sheets (registra) → Gmail (avisa al investigador)</div>
+      </div>
+      <div class="auto-card">
+        <div class="auto-card-title">Google Workspace Studio</div>
+        <div class="auto-card-tag">Gratuito · Integrado en Workspace</div>
+        <div class="auto-card-desc">IA de Gemini integrada directamente en Sheets, Docs y Slides. Si el equipo ya usa Google Workspace, es el punto de entrada más rápido a la automatización con IA sin cambiar de herramientas.</div>
+        <div class="auto-example">Flujo ejemplo: Datos de NPS en Sheets → Gemini analiza → genera resumen en Docs → crea slide de hallazgos en Slides automáticamente</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEASER MOD 6 -->
+  <div class="teaser-box">
+    <div class="teaser-left">
+      <div class="teaser-eyebrow">Anticipo — lo que profundizarás más adelante</div>
+      <div class="teaser-title">Módulo 6: <span>Experimentación,<br>IA y Validación</span></div>
+      <div class="teaser-desc">En este módulo conociste las herramientas y las 5 capas de trabajo con IA. En el Módulo 6 vas a aprender a diseñar experimentos completos con IA, construir hipótesis estructuradas, conectar herramientas en pipelines reales y usar IA para reducir incertidumbre en decisiones de producto. Todo lo que estás usando hoy de forma intuitiva tendrá un framework riguroso.</div>
+    </div>
+    <div class="teaser-right">
+      <div class="teaser-modules">
+        <div class="teaser-mod">
+          <div class="mod-num">M1</div>
+          <div><div class="mod-name">Estrategia de Producto + IA</div><div class="mod-sub">Ecosistema y roles transformados</div></div>
+        </div>
+        <div class="teaser-mod mod-active">
+          <div class="mod-num">M2</div>
+          <div><div class="mod-name">Insights y Oportunidades ✦ Aquí</div><div class="mod-sub">Discovery + Double Diamond + IA</div></div>
+        </div>
+        <div class="teaser-mod">
+          <div class="mod-num">M3</div>
+          <div><div class="mod-name">UX/UI + IA</div><div class="mod-sub">Diseño de experiencias inteligentes</div></div>
+        </div>
+        <div class="teaser-mod">
+          <div class="mod-num">M4</div>
+          <div><div class="mod-name">Modelos de Negocio</div><div class="mod-sub">Valor, KPIs y monetización</div></div>
+        </div>
+        <div class="teaser-mod">
+          <div class="mod-num">M5</div>
+          <div><div class="mod-name">Metodologías Ágiles</div><div class="mod-sub">Squads, backlog, ciclos</div></div>
+        </div>
+        <div class="teaser-mod">
+          <div class="mod-num">M6</div>
+          <div><div class="mod-name">Experimentación + IA</div><div class="mod-sub">Hipótesis, A/B, pipelines reales</div></div>
+        </div>
+        <div class="teaser-mod">
+          <div class="mod-num">M7</div>
+          <div><div class="mod-name">Taller Integrador</div><div class="mod-sub">Del insight al caso de negocio</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div>
+      <div class="footer-module">Insights, Comportamiento y Oportunidades de Producto</div>
+      <div class="footer-sub">Módulo 2 de 7 · Pieza 5: Las Capas de la IA — Guía Integradora</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

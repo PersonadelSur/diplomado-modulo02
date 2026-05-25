@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2 — Insights, Comportamiento y Oportunidades de Producto</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  background: #111029;
+  border-bottom: 2px solid #1500ff;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 8px;
+}
+.nav-brand-thin { font-size: 0.7rem; font-weight: 300; color: rgba(255,255,255,0.5); }
+.nav-brand-sep { color: #1500ff; font-size: 0.7rem; }
+.nav-brand-bold { font-size: 0.7rem; font-weight: 700; color: #fff; }
+
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 64px 56px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+.eyebrow {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.18em; color: #1500ff; margin-bottom: 14px;
+}
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 800; color: #000; letter-spacing: -0.04em;
+  line-height: 1.05; margin-bottom: 12px;
+}
+.hero-title span { color: #1500ff; }
+.hero-sub {
+  font-size: 0.88rem; color: #111029; font-weight: 400;
+  line-height: 1.7; max-width: 560px; margin-bottom: 40px;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+.card {
+  background: #fff;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 20px 22px;
+  text-decoration: none;
+  color: #111029;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.card:hover {
+  border-color: #1500ff;
+  box-shadow: 0 4px 20px rgba(21,0,255,0.1);
+}
+.card-num {
+  font-size: 0.58rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.12em; color: #1500ff;
+}
+.card-name {
+  font-size: 0.88rem; font-weight: 700; color: #000; line-height: 1.3;
+}
+.card-desc {
+  font-size: 0.7rem; color: #666; line-height: 1.5; font-weight: 400;
+}
+.card-badge {
+  display: inline-block;
+  font-size: 0.55rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 2px 7px; border-radius: 4px;
+  background: rgba(21,0,255,0.08); color: #1500ff;
+  border: 1px solid rgba(21,0,255,0.2);
+  margin-top: 4px; align-self: flex-start;
+}
+.footer-bar {
+  padding: 16px 56px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  font-size: 0.62rem; color: #999;
+  display: flex; justify-content: space-between;
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand-thin">Módulo 2</span>
+  <span class="nav-brand-sep">&nbsp;|&nbsp;</span>
+  <span class="nav-brand-bold">Insights, Comportamiento y Oportunidades de Producto</span>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Diplomado en Estrategia y Experiencia de Productos · FEN UChile · 1S 2026</div>
+  <div class="hero-title">Insights, Comportamiento<br>y <span>Oportunidades</span><br>de Producto</div>
+  <div class="hero-sub">Material de apoyo para el Módulo 2. Navega cada pieza desde el menú superior o desde las tarjetas a continuación.</div>
+
+  <div class="card-grid">
+    <a href="guia-workshop.html" class="card">
+      <div class="card-num">Pieza 1</div>
+      <div class="card-name">Guía Workshop</div>
+      <div class="card-desc">Guía de navegación del tablero OST con zonas, flujo y criterios de auto-evaluación.</div>
+    </a>
+    <a href="double-diamond.html" class="card">
+      <div class="card-num">Pieza 2</div>
+      <div class="card-name">Double Diamond</div>
+      <div class="card-desc">Las 4 fases del Double Diamond con herramientas IA por fase y ciclo de vida del producto.</div>
+    </a>
+    <a href="stack-herramientas.html" class="card">
+      <div class="card-num">Pieza 3</div>
+      <div class="card-name">Stack de Herramientas</div>
+      <div class="card-desc">Qué herramienta usar, cuándo y para qué. Tabla completa con fases y usos por rol PM/PO.</div>
+    </a>
+    <a href="diverger-converger.html" class="card">
+      <div class="card-num">Pieza 4</div>
+      <div class="card-name">Diverger · Converger</div>
+      <div class="card-desc">Ideas concretas y prompts sugeridos para cada modo de pensamiento con IA.</div>
+    </a>
+    <a href="capas-ia.html" class="card">
+      <div class="card-num">Pieza 5</div>
+      <div class="card-name">Capas de Inteligencia Artificial</div>
+      <div class="card-desc">Las 5 capas de trabajo con IA: Prompt, Context, Intent, Especificación y Conexión.</div>
+      <div class="card-badge">Adelanto · Módulo 6</div>
+    </a>
+  </div>
+</div>
+
+<div class="footer-bar">
+  <span>Módulo 2 · Diplomado en Estrategia y Experiencia de Productos en la Era de la IA · FEN UChile</span>
+  <span>1S 2026</span>
+</div>
+
+</body>
+</html>
