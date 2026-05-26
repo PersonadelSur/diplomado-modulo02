@@ -7,43 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 body { padding-top: 52px !important; }
-</style>
-</head>
-<body>
 
-<!-- NAV HEADER -->
-<nav id="site-nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
-      <span class="nav-brand-thin">Módulo 2</span>
-      <span class="nav-brand-sep">|</span>
-      <span class="nav-brand-bold">Insights, Comportamiento y Oportunidades de Producto</span>
-    </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menú">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links" id="nav-links">
-      <a href="guia-workshop.html" class="nav-link">Guía Workshop</a>
-      <a href="double-diamond.html" class="nav-link">Double Diamond</a>
-      <a href="stack-herramientas.html" class="nav-link">Stack de Herramientas</a>
-      <a href="diverger-converger.html" class="nav-link">Diverger · Converger</a>
-      <a href="capas-ia.html" class="nav-link">Capas de IA <span class="nav-badge">Adelanto</span></a>
-      <a href="recursos.html" class="nav-link active">Glosario y Recursos</a>
-    </div>
-  </div>
-</nav>
-
-<style>
 /* ── NAV ── */
 #site-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
   background: #111029; border-bottom: 2px solid #1500ff;
   font-family: 'Poppins', sans-serif;
 }
-.nav-inner {
-  max-width: 1440px; margin: 0 auto; padding: 0 28px;
-  height: 52px; display: flex; align-items: center; gap: 0;
-}
+.nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 28px; height: 52px; display: flex; align-items: center; }
 .nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; margin-right: 24px; }
 .nav-brand-thin { font-size: 0.7rem; font-weight: 300; color: rgba(255,255,255,0.5); white-space: nowrap; }
 .nav-brand-sep { font-size: 0.7rem; color: #1500ff; }
@@ -56,7 +27,7 @@ body { padding-top: 52px !important; }
 .nav-toggle { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 8px; margin-left: auto; }
 .nav-toggle span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; }
 @media (max-width: 1000px) {
-  .nav-brand-bold { max-width: 140px; }
+  .nav-brand-bold { max-width: 120px; }
   .nav-toggle { display: flex; }
   .nav-links { display: none; position: absolute; top: 52px; left: 0; right: 0; background: #111029; border-bottom: 2px solid #1500ff; flex-direction: column; align-items: flex-start; padding: 8px 16px 16px; gap: 2px; }
   .nav-links.open { display: flex; }
@@ -64,162 +35,193 @@ body { padding-top: 52px !important; }
 }
 
 /* ── BASE ── */
-:root {
-  --bg: #f5f5f5; --white: #fff; --black: #000; --body: #111029;
-  --accent: #1500ff; --accent-bg: rgba(21,0,255,0.06); --accent-border: rgba(21,0,255,0.16);
-  --diverge: #c96a00; --diverge-bg: rgba(201,106,0,0.08); --diverge-border: rgba(201,106,0,0.22);
-  --converge: #007a5e; --converge-bg: rgba(0,122,94,0.08); --converge-border: rgba(0,122,94,0.22);
-  --border: rgba(0,0,0,0.09); --border-strong: rgba(0,0,0,0.14);
-  --dim: #666677; --xdim: #aaaabb;
-}
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--body); }
-
+body { font-family: 'Poppins', sans-serif; background: #f5f5f5; color: #111029; }
 .page { max-width: 1200px; margin: 0 auto; padding: 40px 36px 80px; }
 
 /* ── HEADER ── */
-.header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; padding-bottom: 20px; border-bottom: 2px solid var(--black); }
-.eyebrow { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); margin-bottom: 6px; }
-.h-title { font-size: clamp(1.6rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--black); letter-spacing: -0.03em; line-height: 1.05; }
-.h-title span { color: var(--accent); }
-.h-sub { font-size: 0.78rem; color: var(--dim); margin-top: 6px; }
-.header-tag { background: var(--black); color: var(--white); font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 14px; border-radius: 4px; }
+.header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #000; }
+.eyebrow { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: #1500ff; margin-bottom: 6px; }
+.h-title { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 800; color: #000; letter-spacing: -0.03em; line-height: 1.05; }
+.h-title span { color: #1500ff; }
+.h-sub { font-size: 0.76rem; color: #666; margin-top: 6px; }
+.header-tag { background: #000; color: #fff; font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 14px; border-radius: 4px; white-space: nowrap; }
 
 /* ── SEARCH ── */
-.search-wrap {
-  background: var(--white); border: 1.5px solid var(--border-strong);
-  border-radius: 12px; padding: 20px 24px; margin-bottom: 32px;
-  display: flex; gap: 12px; align-items: center;
-}
-.search-icon { color: var(--accent); font-size: 1.1rem; flex-shrink: 0; }
-.search-input {
-  flex: 1; border: none; outline: none; font-family: 'Poppins', sans-serif;
-  font-size: 0.95rem; font-weight: 500; color: var(--black); background: transparent;
-}
-.search-input::placeholder { color: var(--xdim); font-weight: 400; }
-.search-count { font-size: 0.65rem; font-weight: 600; color: var(--xdim); white-space: nowrap; }
+.search-wrap { background: #fff; border: 1.5px solid rgba(0,0,0,0.14); border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; display: flex; gap: 12px; align-items: center; }
+.search-icon { color: #1500ff; font-size: 1.1rem; flex-shrink: 0; }
+.search-input { flex: 1; border: none; outline: none; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 500; color: #000; background: transparent; }
+.search-input::placeholder { color: #aaaabb; font-weight: 400; }
+.search-count { font-size: 0.65rem; font-weight: 600; color: #aaaabb; white-space: nowrap; }
 
 /* ── TAB NAV ── */
-.tab-nav { display: flex; gap: 6px; margin-bottom: 28px; flex-wrap: wrap; }
+.tab-nav { display: flex; gap: 6px; margin-bottom: 32px; flex-wrap: wrap; border-bottom: 1.5px solid rgba(0,0,0,0.1); padding-bottom: 0; }
 .tab-btn {
-  padding: 7px 16px; border-radius: 999px; font-size: 0.68rem; font-weight: 700;
+  padding: 10px 18px; border-radius: 8px 8px 0 0; font-size: 0.68rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer;
-  border: 1.5px solid var(--border-strong); background: var(--white);
-  color: var(--dim); transition: all 0.15s; font-family: 'Poppins', sans-serif;
+  border: 1.5px solid transparent; border-bottom: none;
+  background: transparent; color: #999; transition: all 0.15s;
+  font-family: 'Poppins', sans-serif; position: relative; bottom: -1px;
+  display: flex; align-items: center; gap: 7px;
 }
-.tab-btn:hover { border-color: var(--accent); color: var(--accent); }
-.tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.tab-btn .count { font-size: 0.55rem; opacity: 0.7; margin-left: 4px; }
+.tab-btn:hover { color: #1500ff; background: rgba(21,0,255,0.04); }
+.tab-btn.active { background: #f5f5f5; border-color: rgba(0,0,0,0.1); color: #1500ff; border-bottom-color: #f5f5f5; }
+.tab-btn .tab-icon { font-size: 1rem; }
+.tab-btn .tab-count { font-size: 0.55rem; background: rgba(0,0,0,0.07); color: #666; padding: 1px 6px; border-radius: 999px; }
+.tab-btn.active .tab-count { background: rgba(21,0,255,0.1); color: #1500ff; }
 
-/* ── SECTION TITLE ── */
-.section-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border-strong); }
+/* ── SECTION LABEL ── */
+.section-label { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; color: #1500ff; margin-bottom: 16px; margin-top: 28px; display: flex; align-items: center; gap: 10px; }
+.section-label:first-child { margin-top: 0; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: rgba(0,0,0,0.1); }
 
-/* ── GLOSARIO ── */
-.section-panel { display: none; }
-.section-panel.visible { display: block; }
-
-.glossary-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 12px; margin-bottom: 40px;
+/* ══════════════════════════════
+   GLOSARIO
+══════════════════════════════ */
+.gloss-subtitle {
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.12em; color: #000;
+  padding: 8px 14px; background: #000; color: #fff;
+  border-radius: 6px; display: inline-block;
+  margin-bottom: 12px; margin-top: 24px;
 }
+.gloss-subtitle:first-of-type { margin-top: 0; }
+
+.glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; margin-bottom: 8px; }
 
 .gloss-card {
-  background: var(--white); border: 1.5px solid var(--border);
-  border-radius: 12px; padding: 18px 20px;
-  border-left: 4px solid var(--accent);
-  transition: box-shadow 0.15s;
+  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
+  padding: 18px 20px; border-left: 4px solid #1500ff;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-.gloss-card:hover { box-shadow: 0 4px 16px rgba(21,0,255,0.08); }
-.gloss-card.cat-metricas { border-left-color: var(--diverge); }
-.gloss-card.cat-metodologia { border-left-color: var(--converge); }
+.gloss-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.gloss-card.cat-metricas { border-left-color: #c96a00; }
+.gloss-card.cat-metodologia { border-left-color: #007a5e; }
 .gloss-card.cat-ia { border-left-color: #5a006b; }
 .gloss-card.cat-negocio { border-left-color: #006060; }
-.gloss-card.cat-tips { border-left-color: #c0a000; }
+.gloss-card.cat-sesgo { border-left-color: #8b0000; }
 
-.gloss-term { font-size: 0.95rem; font-weight: 800; color: var(--black); margin-bottom: 3px; line-height: 1.2; }
-.gloss-en { font-size: 0.62rem; font-weight: 500; color: var(--xdim); margin-bottom: 8px; letter-spacing: 0.02em; }
-.gloss-cat { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 2px 7px; border-radius: 3px; display: inline-block; margin-bottom: 8px; }
-.cat-metricas .gloss-cat { color: var(--diverge); background: var(--diverge-bg); }
-.cat-metodologia .gloss-cat { color: var(--converge); background: var(--converge-bg); }
-.cat-ia .gloss-cat { color: #5a006b; background: rgba(90,0,107,0.07); }
-.cat-negocio .gloss-cat { color: #006060; background: rgba(0,96,96,0.07); }
-.cat-producto .gloss-cat { color: var(--accent); background: var(--accent-bg); }
-.cat-tips .gloss-cat { color: #8a6000; background: rgba(138,96,0,0.07); }
+.gloss-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+.gloss-term { font-size: 0.95rem; font-weight: 800; color: #000; line-height: 1.2; }
+.gloss-en { font-size: 0.6rem; font-weight: 500; color: #aaaabb; margin-top: 1px; font-style: italic; }
+.gloss-cat-badge {
+  font-size: 0.52rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+}
+.cat-metricas .gloss-cat-badge { color: #c96a00; background: rgba(201,106,0,0.09); border: 1px solid rgba(201,106,0,0.2); }
+.cat-metodologia .gloss-cat-badge { color: #007a5e; background: rgba(0,122,94,0.09); border: 1px solid rgba(0,122,94,0.2); }
+.cat-ia .gloss-cat-badge { color: #5a006b; background: rgba(90,0,107,0.07); border: 1px solid rgba(90,0,107,0.18); }
+.cat-negocio .gloss-cat-badge { color: #006060; background: rgba(0,96,96,0.07); border: 1px solid rgba(0,96,96,0.18); }
+.cat-sesgo .gloss-cat-badge { color: #8b0000; background: rgba(139,0,0,0.07); border: 1px solid rgba(139,0,0,0.18); }
+.cat-producto .gloss-cat-badge { color: #1500ff; background: rgba(21,0,255,0.07); border: 1px solid rgba(21,0,255,0.18); }
+.gloss-def { font-size: 0.75rem; font-weight: 400; color: #111029; line-height: 1.65; }
+.gloss-def strong { font-weight: 600; color: #000; }
 
-.gloss-def { font-size: 0.76rem; font-weight: 400; color: var(--body); line-height: 1.65; }
-.gloss-def strong { font-weight: 600; color: var(--black); }
+/* ══════════════════════════════
+   TIPS — dark cards matching index style
+══════════════════════════════ */
+.tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
 
-/* ── TIPS ── */
-.tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin-bottom: 40px; }
 .tip-card {
-  background: #111029; border-radius: 12px; padding: 20px 22px;
-  display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: flex-start;
+  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
+  padding: 20px 22px; display: flex; flex-direction: column; gap: 10px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  border-top: 4px solid #111029;
 }
-.tip-num { font-size: 1.1rem; font-weight: 900; color: #1500ff; line-height: 1; }
-.tip-text { font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.82); line-height: 1.65; }
-.tip-text strong { color: #fff; font-weight: 600; }
+.tip-card:hover { border-color: #1500ff; box-shadow: 0 4px 20px rgba(21,0,255,0.08); }
+.tip-header { display: flex; align-items: center; gap: 10px; }
+.tip-icon { font-size: 1.4rem; flex-shrink: 0; }
+.tip-num { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #1500ff; }
+.tip-title { font-size: 0.88rem; font-weight: 700; color: #000; line-height: 1.3; }
+.tip-text { font-size: 0.75rem; font-weight: 400; color: #111029; line-height: 1.65; }
+.tip-text strong { font-weight: 600; color: #000; }
 
-/* ── BOOKS ── */
-.books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 40px; }
+/* ══════════════════════════════
+   LIBROS
+══════════════════════════════ */
+.books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+
 .book-card {
-  background: var(--white); border: 1.5px solid var(--border);
-  border-radius: 12px; padding: 18px 20px; text-decoration: none;
-  color: var(--body); transition: border-color 0.15s, box-shadow 0.15s;
-  display: flex; flex-direction: column; gap: 4px;
-  border-top: 4px solid var(--converge);
+  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
+  padding: 20px 22px; text-decoration: none; color: #111029;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  display: flex; flex-direction: column; gap: 5px;
 }
-.book-card:hover { border-color: var(--converge); box-shadow: 0 4px 16px rgba(0,122,94,0.1); }
-.book-num { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--converge); }
-.book-title { font-size: 0.88rem; font-weight: 700; color: var(--black); line-height: 1.3; margin-bottom: 2px; }
-.book-author { font-size: 0.68rem; font-weight: 500; color: var(--dim); margin-bottom: 6px; }
-.book-why { font-size: 0.71rem; font-weight: 400; color: var(--body); line-height: 1.5; }
-.book-link { font-size: 0.6rem; font-weight: 600; color: var(--converge); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+.book-card:hover { border-color: #007a5e; box-shadow: 0 4px 20px rgba(0,122,94,0.1); }
+.book-emoji { font-size: 2rem; margin-bottom: 4px; display: block; }
+.book-num { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #007a5e; }
+.book-title { font-size: 0.9rem; font-weight: 700; color: #000; line-height: 1.25; }
+.book-author { font-size: 0.68rem; font-weight: 500; color: #666; }
+.book-why { font-size: 0.71rem; font-weight: 400; color: #111029; line-height: 1.55; margin-top: 4px; flex: 1; }
+.book-cta { margin-top: 10px; font-size: 0.6rem; font-weight: 700; color: #007a5e; text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 4px; }
+.book-segment-title { grid-column: 1/-1; }
 
-/* ── ARTICLES ── */
-.articles-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 40px; }
+/* ══════════════════════════════
+   ARTÍCULOS
+══════════════════════════════ */
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; }
+
 .article-card {
-  background: var(--white); border: 1.5px solid var(--border);
-  border-radius: 10px; padding: 14px 20px; text-decoration: none;
-  color: var(--body); transition: border-color 0.15s;
-  display: grid; grid-template-columns: auto 1fr auto;
-  align-items: center; gap: 14px;
-  border-left: 4px solid var(--diverge);
-}
-.article-card:hover { border-color: var(--diverge); }
-.article-icon { font-size: 1.1rem; flex-shrink: 0; }
-.article-title { font-size: 0.82rem; font-weight: 600; color: var(--black); line-height: 1.3; margin-bottom: 2px; }
-.article-source { font-size: 0.64rem; font-weight: 500; color: var(--dim); }
-.article-arrow { color: var(--xdim); font-size: 0.9rem; flex-shrink: 0; }
-
-/* ── PODCASTS ── */
-.pod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 40px; }
-.pod-card {
-  background: var(--white); border: 1.5px solid var(--border);
-  border-radius: 12px; padding: 18px 20px; text-decoration: none;
-  color: var(--body); transition: border-color 0.15s, box-shadow 0.15s;
+  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
+  padding: 18px 20px; text-decoration: none; color: #111029;
+  transition: border-color 0.15s, box-shadow 0.15s;
   display: flex; flex-direction: column; gap: 6px;
-  border-top: 4px solid #5a006b;
+  border-left: 4px solid #c96a00;
 }
-.pod-card:hover { border-color: #5a006b; box-shadow: 0 4px 16px rgba(90,0,107,0.1); }
-.pod-label { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #5a006b; }
-.pod-name { font-size: 0.9rem; font-weight: 700; color: var(--black); line-height: 1.25; }
-.pod-desc { font-size: 0.71rem; color: var(--dim); line-height: 1.5; }
-.pod-link { font-size: 0.6rem; font-weight: 600; color: #5a006b; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+.article-card:hover { border-color: #c96a00; box-shadow: 0 4px 20px rgba(201,106,0,0.1); }
+.article-source-badge { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #c96a00; }
+.article-title { font-size: 0.88rem; font-weight: 700; color: #000; line-height: 1.3; }
+.article-desc { font-size: 0.71rem; color: #666; line-height: 1.5; flex: 1; }
+.article-cta { font-size: 0.6rem; font-weight: 700; color: #c96a00; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+/* ══════════════════════════════
+   PODCASTS
+══════════════════════════════ */
+.pod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+
+.pod-card {
+  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
+  padding: 20px 22px; text-decoration: none; color: #111029;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.pod-card:hover { border-color: #5a006b; box-shadow: 0 4px 20px rgba(90,0,107,0.1); }
+.pod-emoji { font-size: 2rem; margin-bottom: 4px; display: block; }
+.pod-platform { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #5a006b; }
+.pod-name { font-size: 0.9rem; font-weight: 700; color: #000; line-height: 1.25; }
+.pod-format { font-size: 0.62rem; font-weight: 600; color: #aaaabb; }
+.pod-desc { font-size: 0.71rem; color: #111029; line-height: 1.55; margin-top: 4px; flex: 1; }
+.pod-cta { margin-top: 10px; font-size: 0.6rem; font-weight: 700; color: #5a006b; text-transform: uppercase; letter-spacing: 0.08em; }
 
 /* ── NO RESULTS ── */
-.no-results { text-align: center; padding: 48px 24px; color: var(--xdim); font-size: 0.82rem; display: none; }
+.no-results { text-align: center; padding: 48px 24px; color: #aaaabb; font-size: 0.82rem; display: none; }
 .no-results.visible { display: block; }
+.searchable.hidden { display: none !important; }
 
 /* ── FOOTER ── */
-.footer { margin-top: 48px; padding-top: 20px; border-top: 1.5px solid var(--black); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
-.footer-module { font-size: 0.72rem; font-weight: 700; color: var(--black); }
-.footer-sub { font-size: 0.62rem; color: var(--dim); margin-top: 2px; }
-
-/* ── HIDDEN ── */
-.searchable { transition: opacity 0.15s; }
-.searchable.hidden { display: none; }
+.footer { margin-top: 56px; padding-top: 20px; border-top: 1.5px solid #000; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
+.footer-module { font-size: 0.72rem; font-weight: 700; color: #000; }
+.footer-sub { font-size: 0.62rem; color: #666; margin-top: 2px; }
 </style>
+
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-thin">Módulo 2</span>
+      <span class="nav-brand-sep">&nbsp;|&nbsp;</span>
+      <span class="nav-brand-bold">Insights, Comportamiento y Oportunidades de Producto</span>
+    </a>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menú"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
+      <a href="guia-workshop.html" class="nav-link">Guía Workshop</a>
+      <a href="double-diamond.html" class="nav-link">Double Diamond</a>
+      <a href="stack-herramientas.html" class="nav-link">Stack de Herramientas</a>
+      <a href="diverger-converger.html" class="nav-link">Diverger · Converger</a>
+      <a href="capas-ia.html" class="nav-link">Capas de IA <span class="nav-badge">Adelanto</span></a>
+      <a href="recursos.html" class="nav-link active">Glosario y Recursos</a>
+    </div>
+  </div>
+</nav>
 
 <div class="page">
 
@@ -227,471 +229,502 @@ body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--b
     <div>
       <div class="eyebrow">Módulo 2 · Insights, Comportamiento y Oportunidades de Producto</div>
       <div class="h-title">Glosario y <span>Recursos</span></div>
-      <div class="h-sub">Términos clave, libros, lecturas y podcasts recomendados para el diplomado</div>
+      <div class="h-sub">Términos clave · Libros · Artículos · Podcasts · Tips para trabajar con IA</div>
     </div>
-    <div class="header-tag">Referencia</div>
+    <div class="header-tag">Referencia del Módulo</div>
   </div>
 
-  <!-- SEARCH -->
   <div class="search-wrap">
     <div class="search-icon">⌕</div>
-    <input class="search-input" id="search-input" type="text" placeholder="Buscar término, libro, autor, podcast..." oninput="doSearch()">
+    <input class="search-input" id="search-input" type="text" placeholder="Buscar término, libro, autor, concepto..." oninput="doSearch()">
     <div class="search-count" id="search-count"></div>
   </div>
 
-  <!-- TABS -->
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="setTab('all')">Todo</button>
-    <button class="tab-btn" onclick="setTab('glosario')">Glosario <span class="count">30</span></button>
-    <button class="tab-btn" onclick="setTab('tips')">Tips IA <span class="count">3</span></button>
-    <button class="tab-btn" onclick="setTab('libros')">Libros <span class="count">14</span></button>
-    <button class="tab-btn" onclick="setTab('lecturas')">Lecturas <span class="count">6</span></button>
-    <button class="tab-btn" onclick="setTab('podcasts')">Podcasts <span class="count">5</span></button>
+    <button class="tab-btn active" onclick="setTab('all',this)"><span class="tab-icon">◈</span> Todo</button>
+    <button class="tab-btn" onclick="setTab('glosario',this)"><span class="tab-icon">📖</span> Glosario <span class="tab-count">31</span></button>
+    <button class="tab-btn" onclick="setTab('tips',this)"><span class="tab-icon">⚡</span> Tips IA <span class="tab-count">9</span></button>
+    <button class="tab-btn" onclick="setTab('libros',this)"><span class="tab-icon">📚</span> Libros <span class="tab-count">14</span></button>
+    <button class="tab-btn" onclick="setTab('lecturas',this)"><span class="tab-icon">📰</span> Lecturas <span class="tab-count">6</span></button>
+    <button class="tab-btn" onclick="setTab('podcasts',this)"><span class="tab-icon">🎙️</span> Podcasts <span class="tab-count">5</span></button>
   </div>
 
   <div id="no-results" class="no-results">No se encontraron resultados para tu búsqueda.</div>
 
-  <!-- ═══════ GLOSARIO ═══════ -->
+  <!-- ══════════════════════════════
+       GLOSARIO
+  ══════════════════════════════ -->
   <div id="panel-glosario">
-    <div class="section-label">Glosario de términos</div>
-    <div class="glossary-grid" id="glossary-grid">
 
-      <!-- METODOLOGÍA -->
-      <div class="gloss-card cat-metodologia searchable" data-tags="ost opportunity solution tree teresa torres framework árbol oportunidad solución producto">
-        <div class="gloss-term">Opportunity Solution Tree</div>
-        <div class="gloss-en">OST</div>
-        <div class="gloss-cat">Metodología</div>
+    <div class="section-label">Metodología de Producto</div>
+    <div class="glossary-grid">
+
+      <div class="gloss-card cat-metodologia searchable" data-tags="ost opportunity solution tree teresa torres framework oportunidad solución árbol">
+        <div class="gloss-header"><div><div class="gloss-term">Opportunity Solution Tree</div><div class="gloss-en">OST</div></div><span class="gloss-cat-badge">Metodología</span></div>
         <div class="gloss-def">Framework visual de Teresa Torres que conecta un <strong>outcome de negocio</strong> con oportunidades de usuario y soluciones potenciales. Evita el error más común en producto: saltar directo a soluciones sin evidencia. Cada nivel del árbol debe justificar lógicamente al siguiente.</div>
       </div>
 
-      <div class="gloss-card cat-metodologia searchable" data-tags="double diamond doble diamante design thinking discover define develop deliver diverge converge">
-        <div class="gloss-term">Doble Diamante</div>
-        <div class="gloss-en">Double Diamond</div>
-        <div class="gloss-cat">Metodología</div>
+      <div class="gloss-card cat-metodologia searchable" data-tags="double diamond doble diamante design thinking discover define develop deliver">
+        <div class="gloss-header"><div><div class="gloss-term">Doble Diamante</div><div class="gloss-en">Double Diamond</div></div><span class="gloss-cat-badge">Metodología</span></div>
         <div class="gloss-def">Framework del Design Council (2005) que estructura el proceso creativo en <strong>4 fases</strong>: Discover (diverge), Define (converge), Develop (diverge), Deliver (converge). La forma de diamante representa la expansión y contracción del pensamiento en cada etapa.</div>
       </div>
 
-      <div class="gloss-card cat-metodologia searchable" data-tags="diverger divergencia explorar generar ideas expansión">
-        <div class="gloss-term">Diverger</div>
-        <div class="gloss-en">Diverge / Divergent thinking</div>
-        <div class="gloss-cat">Metodología</div>
-        <div class="gloss-def">Modo de pensamiento orientado a <strong>generar la mayor cantidad de opciones posibles</strong> sin filtrar ni juzgar. El objetivo es ampliar el espacio de posibilidades. Se aplica en las fases de Discover y Develop del Double Diamond. Regla clave: no evalúes mientras diverges.</div>
+      <div class="gloss-card cat-metodologia searchable" data-tags="diverger divergencia explorar generar ideas expansión sin filtrar">
+        <div class="gloss-header"><div><div class="gloss-term">Diverger</div><div class="gloss-en">Divergent thinking</div></div><span class="gloss-cat-badge">Metodología</span></div>
+        <div class="gloss-def">Modo de pensamiento orientado a <strong>generar la mayor cantidad de opciones posibles</strong> sin filtrar ni juzgar. El objetivo es ampliar el espacio de posibilidades. Regla clave: no evalúes mientras diverges — la velocidad de generación importa más que la perfección.</div>
       </div>
 
-      <div class="gloss-card cat-metodologia searchable" data-tags="converger convergencia decidir priorizar seleccionar criterio">
-        <div class="gloss-term">Converger</div>
-        <div class="gloss-en">Converge / Convergent thinking</div>
-        <div class="gloss-cat">Metodología</div>
-        <div class="gloss-def">Modo de pensamiento orientado a <strong>reducir opciones con criterio explícito</strong>. El objetivo es seleccionar la mejor alternativa basada en evidencia. Se aplica en las fases de Define y Deliver. Regla clave: la selección debe ser justificable, no solo intuitiva.</div>
+      <div class="gloss-card cat-metodologia searchable" data-tags="converger convergencia decidir priorizar seleccionar criterio evidencia">
+        <div class="gloss-header"><div><div class="gloss-term">Converger</div><div class="gloss-en">Convergent thinking</div></div><span class="gloss-cat-badge">Metodología</span></div>
+        <div class="gloss-def">Modo de pensamiento orientado a <strong>reducir opciones con criterio explícito</strong>. El objetivo es seleccionar la mejor alternativa basada en evidencia. Regla clave: la selección debe ser justificable, no solo intuitiva — debes poder explicar por qué esta y no las otras.</div>
       </div>
 
-      <div class="gloss-card cat-metodologia searchable" data-tags="okr objective key results objetivos resultados clave google intel john doerr">
-        <div class="gloss-term">OKR</div>
-        <div class="gloss-en">Objectives & Key Results</div>
-        <div class="gloss-cat">Metodología</div>
-        <div class="gloss-def">Framework de definición de metas popularizado por Google e Intel. Un <strong>Objective</strong> es cualitativo e inspirador; los <strong>Key Results</strong> son métricas medibles que indican si el objetivo se logró. Típicamente se definen trimestralmente. Los KR deben ser ambiciosos pero alcanzables (70% de éxito es considerado bueno).</div>
+      <div class="gloss-card cat-metodologia searchable" data-tags="okr objective key results objetivos resultados clave google intel doerr">
+        <div class="gloss-header"><div><div class="gloss-term">OKR</div><div class="gloss-en">Objectives & Key Results</div></div><span class="gloss-cat-badge">Metodología</span></div>
+        <div class="gloss-def">Framework de definición de metas. Un <strong>Objective</strong> es cualitativo e inspirador; los <strong>Key Results</strong> son métricas medibles que indican si el objetivo se logró. Típicamente trimestrales. Un 70% de logro se considera éxito — si siempre llegas al 100%, tus OKRs no son suficientemente ambiciosos.</div>
       </div>
 
-      <div class="gloss-card cat-metodologia searchable" data-tags="mvp minimum viable product producto mínimo viable lean startup validación">
-        <div class="gloss-term">Cómo hacer un MVP</div>
-        <div class="gloss-en">Minimum Viable Product</div>
-        <div class="gloss-cat">Metodología</div>
-        <div class="gloss-def">Un MVP no es un producto malo — es el <strong>experimento mínimo para validar una hipótesis</strong>. Pasos: (1) Define la hipótesis a validar, (2) Identifica el experimento más barato que la pruebe, (3) Define criterio de éxito antes de construir, (4) Lanza, mide, aprende. El MVP puede ser un video, una landing page, o incluso una conversación.</div>
+      <div class="gloss-card cat-metodologia searchable" data-tags="mvp minimum viable product mínimo viable validación lean hipótesis experimento">
+        <div class="gloss-header"><div><div class="gloss-term">Cómo hacer un MVP</div><div class="gloss-en">Minimum Viable Product</div></div><span class="gloss-cat-badge">Metodología</span></div>
+        <div class="gloss-def">Un MVP no es un producto malo — es el <strong>experimento mínimo para validar una hipótesis</strong>. Pasos: (1) Define la hipótesis, (2) Identifica el experimento más barato que la pruebe, (3) Define criterio de éxito antes de construir, (4) Lanza, mide, aprende. Puede ser un video, landing, o conversación.</div>
       </div>
 
-      <div class="gloss-card cat-metodologia searchable" data-tags="pre-mortem premortem riesgo fallo fracaso anticipar problema">
-        <div class="gloss-term">Pre-Mortem</div>
-        <div class="gloss-en">Pre-mortem analysis</div>
-        <div class="gloss-cat">Metodología</div>
-        <div class="gloss-def">Técnica de gestión de riesgo donde el equipo <strong>imagina que el proyecto ya fracasó</strong> y trabaja hacia atrás para identificar qué pudo haber salido mal. Desarrollada por Gary Klein. Es más efectiva que el análisis de riesgo tradicional porque activa el pensamiento contrafactual antes de comprometer recursos.</div>
+      <div class="gloss-card cat-metodologia searchable" data-tags="pre-mortem premortem riesgo fallo fracaso anticipar problema equipo">
+        <div class="gloss-header"><div><div class="gloss-term">Pre-Mortem</div><div class="gloss-en">Pre-mortem analysis</div></div><span class="gloss-cat-badge">Metodología</span></div>
+        <div class="gloss-def">Técnica donde el equipo <strong>imagina que el proyecto ya fracasó</strong> y trabaja hacia atrás para identificar qué pudo salir mal. Más efectiva que el análisis de riesgo tradicional porque activa el pensamiento contrafactual antes de comprometer recursos.</div>
       </div>
 
-      <!-- MÉTRICAS -->
+    </div>
+
+    <div class="section-label">Sesgos Cognitivos</div>
+    <div class="glossary-grid">
+
+      <div class="gloss-card cat-sesgo searchable" data-tags="hippo effect highest paid person opinion sesgo autoridad jefe ceo gerencia datos">
+        <div class="gloss-header"><div><div class="gloss-term">HiPPO Effect</div><div class="gloss-en">Highest Paid Person's Opinion</div></div><span class="gloss-cat-badge">Sesgo</span></div>
+        <div class="gloss-def">Tendencia a tomar decisiones basadas en la <strong>opinión de la persona de mayor jerarquía</strong> en lugar de datos y evidencia. Combatirlo requiere cultura de datos y PMs que sepan presentar evidencia como argumento, no como amenaza.</div>
+      </div>
+
+      <div class="gloss-card cat-sesgo searchable" data-tags="sesgo cognitivo bias cognitive bias distorsión pensamiento decisión irracional">
+        <div class="gloss-header"><div><div class="gloss-term">Sesgo Cognitivo / BIAS</div><div class="gloss-en">Cognitive Bias</div></div><span class="gloss-cat-badge">Sesgo</span></div>
+        <div class="gloss-def">Patrones sistemáticos de <strong>desviación del pensamiento racional</strong>. Los más peligrosos en producto: confirmación (buscar lo que valida lo que ya creemos), disponibilidad (sobrevalorar lo más reciente), anclaje (fijarse en el primer número). Conocerlos no los elimina, pero permite diseñar procesos que los reduzcan.</div>
+      </div>
+
+      <div class="gloss-card cat-sesgo searchable" data-tags="sesgo confirmación confirmation bias evidencia investigación research usuario entrevista">
+        <div class="gloss-header"><div><div class="gloss-term">Sesgo de Confirmación</div><div class="gloss-en">Confirmation Bias</div></div><span class="gloss-cat-badge">Sesgo</span></div>
+        <div class="gloss-def">Tendencia a <strong>buscar, interpretar y recordar información que confirma creencias previas</strong>. Es el sesgo más peligroso en research: si ya decidiste la solución, inconscientemente diseñarás entrevistas para confirmarlo. Mitigación: busca activamente evidencia que te contradiga.</div>
+      </div>
+
+    </div>
+
+    <div class="section-label">Métricas de Comportamiento del Usuario</div>
+    <div class="glossary-grid">
+
       <div class="gloss-card cat-metricas searchable" data-tags="nps net promoter score lealtad usuario recomendación promotor detractor pasivo">
-        <div class="gloss-term">NPS</div>
-        <div class="gloss-en">Net Promoter Score</div>
-        <div class="gloss-cat">Métricas</div>
-        <div class="gloss-def">Métrica de lealtad del cliente basada en una sola pregunta: <strong>"¿Qué tan probable es que recomiendes este producto?"</strong> (0-10). Promotores (9-10) − Detractores (0-6) = NPS. Varía de -100 a +100. Un NPS sobre 50 es considerado excelente. Más útil como tendencia que como número absoluto.</div>
+        <div class="gloss-header"><div><div class="gloss-term">NPS</div><div class="gloss-en">Net Promoter Score</div></div><span class="gloss-cat-badge">Métrica</span></div>
+        <div class="gloss-def">Métrica de lealtad basada en: <strong>"¿Qué tan probable es que recomiendes este producto?"</strong> (0-10). Promotores (9-10) − Detractores (0-6) = NPS. Varía de −100 a +100. Más útil como tendencia que como número absoluto — lo que importa es si sube o baja con el tiempo.</div>
       </div>
 
-      <div class="gloss-card cat-metricas searchable" data-tags="dau daily active users usuarios activos diarios engagement">
-        <div class="gloss-term">DAU</div>
-        <div class="gloss-en">Daily Active Users</div>
-        <div class="gloss-cat">Métricas</div>
-        <div class="gloss-def">Número de usuarios únicos que interactúan con el producto en un día. Mide el <strong>engagement diario</strong>. Relevante para productos con uso frecuente (redes sociales, apps de productividad). Solo tiene sentido compararlo con MAU a través del ratio DAU/MAU, que indica qué porcentaje del total de usuarios activos regresa diariamente.</div>
+      <div class="gloss-card cat-metricas searchable" data-tags="dau daily active users usuarios activos diarios engagement frecuencia">
+        <div class="gloss-header"><div><div class="gloss-term">DAU</div><div class="gloss-en">Daily Active Users</div></div><span class="gloss-cat-badge">Métrica</span></div>
+        <div class="gloss-def">Usuarios únicos que interactúan con el producto en un día. Mide <strong>engagement diario</strong>. Solo tiene sentido comparado con MAU mediante el ratio DAU/MAU (stickiness), que indica qué porcentaje del total de activos regresa diariamente.</div>
       </div>
 
-      <div class="gloss-card cat-metricas searchable" data-tags="mau monthly active users usuarios activos mensuales retención">
-        <div class="gloss-term">MAU</div>
-        <div class="gloss-en">Monthly Active Users</div>
-        <div class="gloss-cat">Métricas</div>
-        <div class="gloss-def">Número de usuarios únicos que interactúan con el producto en los últimos 30 días. Es la métrica base de <strong>escala y retención</strong>. La relación DAU/MAU (llamada "stickiness ratio") indica qué tan habitual es el uso del producto. Un ratio alto (ej: 50%+) indica hábito formado.</div>
+      <div class="gloss-card cat-metricas searchable" data-tags="mau monthly active users usuarios activos mensuales retención escala">
+        <div class="gloss-header"><div><div class="gloss-term">MAU</div><div class="gloss-en">Monthly Active Users</div></div><span class="gloss-cat-badge">Métrica</span></div>
+        <div class="gloss-def">Usuarios únicos que interactúan en los últimos 30 días. Métrica base de <strong>escala y retención</strong>. La relación DAU/MAU indica qué tan habitual es el uso. Un ratio alto (50%+) indica hábito formado en los usuarios.</div>
       </div>
 
-      <div class="gloss-card cat-metricas searchable" data-tags="churn rate tasa abandono cancelación retención pérdida clientes">
-        <div class="gloss-term">Churn Rate</div>
-        <div class="gloss-en">Tasa de cancelación / abandono</div>
-        <div class="gloss-cat">Métricas</div>
-        <div class="gloss-def">Porcentaje de usuarios o clientes que <strong>dejan de usar el producto</strong> en un período determinado. Fórmula: (usuarios perdidos / usuarios al inicio del período) × 100. Un churn alto indica problemas de retención. Es el "enemigo silencioso" del crecimiento — un producto con churn alto nunca escala aunque adquiera usuarios constantemente.</div>
+      <div class="gloss-card cat-metricas searchable" data-tags="tasa adopcion adoption rate feature funcionalidad descubrimiento ux">
+        <div class="gloss-header"><div><div class="gloss-term">Tasa de Adopción</div><div class="gloss-en">Adoption Rate / Feature Adoption</div></div><span class="gloss-cat-badge">Métrica</span></div>
+        <div class="gloss-def">Porcentaje de usuarios que <strong>comienzan a usar una nueva funcionalidad</strong>. Una tasa baja puede indicar problema de descubrimiento (no saben que existe), de UX (no entienden cómo usarla), o de valor (no les resuelve nada).</div>
       </div>
 
-      <div class="gloss-card cat-metricas searchable" data-tags="tasa adopcion adoption rate nuevas features funcionalidades">
-        <div class="gloss-term">Tasa de Adopción</div>
-        <div class="gloss-en">Adoption Rate / Feature Adoption</div>
-        <div class="gloss-cat">Métricas</div>
-        <div class="gloss-def">Porcentaje de usuarios que <strong>comienzan a usar una nueva funcionalidad</strong> del producto. Fórmula: (usuarios que usan la feature / total de usuarios) × 100. Una tasa de adopción baja puede indicar un problema de descubrimiento (los usuarios no saben que existe), de UX (no entienden cómo usarla), o de valor (no les resuelve nada).</div>
+      <div class="gloss-card cat-metricas searchable" data-tags="tasa recurrencia retention retorno frecuencia hábito cohorte">
+        <div class="gloss-header"><div><div class="gloss-term">Tasa de Recurrencia</div><div class="gloss-en">Retention Rate</div></div><span class="gloss-cat-badge">Métrica</span></div>
+        <div class="gloss-def">Porcentaje de usuarios que <strong>regresan al producto</strong> después de su primera interacción. Alta recurrencia = el producto entrega valor real. Se complementa con análisis de cohortes para ver cómo evoluciona con el tiempo.</div>
       </div>
 
-      <div class="gloss-card cat-metricas searchable" data-tags="tasa recurrencia recurrencia retention retorno frecuencia uso hábito">
-        <div class="gloss-term">Tasa de Recurrencia</div>
-        <div class="gloss-en">Retention Rate / Recurrence Rate</div>
-        <div class="gloss-cat">Métricas</div>
-        <div class="gloss-def">Porcentaje de usuarios que <strong>regresan al producto</strong> después de su primera interacción. Mide la formación de hábito. Una alta tasa de recurrencia es el mejor indicador de que el producto está entregando valor real. Se complementa con el análisis de cohortes para ver cómo evoluciona en el tiempo.</div>
+      <div class="gloss-card cat-metricas searchable" data-tags="stickiness dau mau ratio hábito pegajoso retención fórmula formula">
+        <div class="gloss-header"><div><div class="gloss-term">Stickiness</div><div class="gloss-en">Stickiness Formula: DAU ÷ MAU</div></div><span class="gloss-cat-badge">Métrica</span></div>
+        <div class="gloss-def">Mide qué tan "pegajoso" es el producto. <strong>Fórmula: DAU / MAU × 100</strong>. Ej: 10.000 DAU y 50.000 MAU = 20% stickiness. WhatsApp ~80%. Un producto de uso diario apunta a 20–50%+. Indica si el uso es un hábito o un evento ocasional.</div>
       </div>
 
-      <div class="gloss-card cat-metricas searchable" data-tags="stickiness stickiness formula dau mau ratio retención hábito">
-        <div class="gloss-term">Stickiness / Stickiness Formula</div>
-        <div class="gloss-en">Stickiness Ratio</div>
-        <div class="gloss-cat">Métricas</div>
-        <div class="gloss-def">Mide qué tan "pegajoso" es un producto — con qué frecuencia los usuarios regresan. <strong>Fórmula: DAU / MAU × 100</strong>. Ejemplo: si tienes 10.000 DAU y 50.000 MAU, tu stickiness es 20% — 1 de cada 5 usuarios activos del mes vuelve cada día. WhatsApp tiene ~80%. Un producto de uso diario óptimo apunta a 20-50%+.</div>
+      <div class="gloss-card cat-metricas searchable" data-tags="churn rate tasa abandono cancelación retención pérdida clientes suscripción">
+        <div class="gloss-header"><div><div class="gloss-term">Churn Rate</div><div class="gloss-en">Tasa de cancelación / abandono</div></div><span class="gloss-cat-badge">Métrica</span></div>
+        <div class="gloss-def">Porcentaje de usuarios que <strong>dejan de usar el producto</strong> en un período. Fórmula: (usuarios perdidos / usuarios al inicio) × 100. El churn es el "enemigo silencioso" del crecimiento — un producto con churn alto nunca escala aunque adquiera usuarios constantemente.</div>
       </div>
 
-      <div class="gloss-card cat-metricas searchable" data-tags="lead lag indicators indicadores adelantados rezagados predicción resultado">
-        <div class="gloss-term">Lead & Lag Indicators</div>
-        <div class="gloss-en">Indicadores adelantados y rezagados</div>
-        <div class="gloss-cat">Métricas</div>
-        <div class="gloss-def"><strong>Lead indicators</strong>: métricas que predicen resultados futuros (ej: número de demos agendadas predice ventas). <strong>Lag indicators</strong>: métricas que confirman resultados pasados (ej: ingresos mensuales). Los PMs trabajan con ambos: los lag confirman el impacto, los lead permiten actuar antes de que el problema se cristalice.</div>
+    </div>
+
+    <div class="section-label">Métricas de Negocio y Estrategia</div>
+    <div class="glossary-grid">
+
+      <div class="gloss-card cat-metricas searchable" data-tags="lead lag indicators adelantados rezagados predicción resultado pm kpi">
+        <div class="gloss-header"><div><div class="gloss-term">Lead & Lag Indicators</div><div class="gloss-en">Indicadores adelantados y rezagados</div></div><span class="gloss-cat-badge">Métrica</span></div>
+        <div class="gloss-def"><strong>Lead:</strong> predicen resultados futuros (ej: demos agendadas predice ventas). <strong>Lag:</strong> confirman resultados pasados (ej: ingresos mensuales). Los PMs trabajan con ambos: los lag confirman el impacto, los lead permiten actuar antes de que el problema se cristalice.</div>
       </div>
 
       <div class="gloss-card cat-metricas searchable" data-tags="benchmark benchmarking comparación industria referencia competidores estándar">
-        <div class="gloss-term">Benchmark</div>
-        <div class="gloss-en">Benchmarking</div>
-        <div class="gloss-cat">Métricas</div>
-        <div class="gloss-def">Proceso de <strong>comparar métricas, procesos o productos contra un estándar de referencia</strong> — ya sea la industria, un competidor o el mejor de clase. En producto se usa para contextualizar si un NPS de 30 es bueno (depende de la industria) o si un churn de 5% mensual es preocupante (sí lo es). El benchmark sin contexto no tiene valor.</div>
+        <div class="gloss-header"><div><div class="gloss-term">Benchmark</div><div class="gloss-en">Benchmarking</div></div><span class="gloss-cat-badge">Métrica</span></div>
+        <div class="gloss-def">Comparar métricas o procesos contra un <strong>estándar de referencia</strong> — industria, competidor o mejor de clase. Un NPS de 30 puede ser bueno o malo dependiendo de la industria. El benchmark sin contexto no tiene valor.</div>
       </div>
 
-      <div class="gloss-card cat-negocio searchable" data-tags="p&l pyl profit loss ganancias pérdidas estado de resultados financiero">
-        <div class="gloss-term">P&L</div>
-        <div class="gloss-en">Profit & Loss / Estado de Resultados</div>
-        <div class="gloss-cat">Negocio</div>
-        <div class="gloss-def">Estado financiero que muestra <strong>ingresos, costos y ganancias o pérdidas</strong> en un período. Los PMs deben entenderlo para conectar decisiones de producto con impacto financiero. Saber leer un P&L permite argumentar el valor de una feature en términos que la gerencia entiende: margen, costo de adquisición, lifetime value.</div>
+      <div class="gloss-card cat-negocio searchable" data-tags="p&l pyl profit loss ganancias pérdidas financiero margen ingreso costo">
+        <div class="gloss-header"><div><div class="gloss-term">P&L</div><div class="gloss-en">Profit & Loss / Estado de Resultados</div></div><span class="gloss-cat-badge">Negocio</span></div>
+        <div class="gloss-def">Estado financiero que muestra <strong>ingresos, costos y resultado</strong> en un período. Los PMs deben leerlo para conectar decisiones de producto con impacto financiero — permite argumentar el valor de una feature en términos que la gerencia entiende.</div>
       </div>
 
       <div class="gloss-card cat-negocio searchable" data-tags="process driven procesos operaciones eficiencia procedimientos sistemas">
-        <div class="gloss-term">Process Driven</div>
-        <div class="gloss-en">Orientado a procesos</div>
-        <div class="gloss-cat">Negocio</div>
-        <div class="gloss-def">Enfoque donde las decisiones y la cultura organizacional están guiadas por <strong>procesos y procedimientos establecidos</strong>. Opuesto al Tech Driven. En productos digitales, un equipo excesivamente process driven puede perder agilidad y capacidad de adaptación al mercado. El equilibrio entre proceso e innovación es clave.</div>
+        <div class="gloss-header"><div><div class="gloss-term">Process Driven</div><div class="gloss-en">Orientado a procesos</div></div><span class="gloss-cat-badge">Negocio</span></div>
+        <div class="gloss-def">Enfoque donde las decisiones están guiadas por <strong>procesos y procedimientos establecidos</strong>. Un equipo excesivamente process driven puede perder agilidad. El equilibrio entre proceso e innovación define la cultura del equipo de producto.</div>
       </div>
 
-      <div class="gloss-card cat-negocio searchable" data-tags="tech driven tecnología innovación software primero digital">
-        <div class="gloss-term">Tech Driven</div>
-        <div class="gloss-en">Orientado a tecnología</div>
-        <div class="gloss-cat">Negocio</div>
-        <div class="gloss-def">Enfoque donde la <strong>tecnología impulsa las decisiones de producto</strong> y el modelo de negocio. Opuesto al Process Driven. El riesgo del tech driven sin balance es construir soluciones sofisticadas para problemas que los usuarios no tienen. La IA ha amplificado este riesgo — más poder técnico no implica automáticamente más valor para el usuario.</div>
-      </div>
-
-      <!-- SESGOS -->
-      <div class="gloss-card cat-ia searchable" data-tags="hippo effect hippo highest paid person opinion sesgo autoridad jefe">
-        <div class="gloss-term">HiPPO Effect</div>
-        <div class="gloss-en">Highest Paid Person's Opinion</div>
-        <div class="gloss-cat">Sesgo</div>
-        <div class="gloss-def">Tendencia a tomar decisiones basadas en la <strong>opinión de la persona de mayor jerarquía</strong> en lugar de datos y evidencia. El HiPPO aplasta el proceso de discovery — cuando el CEO dice "hagamos esto", el equipo suele dejar de cuestionar. Combatirlo requiere cultura de datos y PMs que sepan presentar evidencia como argumento, no como amenaza.</div>
-      </div>
-
-      <div class="gloss-card cat-ia searchable" data-tags="sesgo cognitivo bias cognitive bias distorsión pensamiento decisión">
-        <div class="gloss-term">Sesgo Cognitivo / BIAS</div>
-        <div class="gloss-en">Cognitive Bias</div>
-        <div class="gloss-cat">Sesgo</div>
-        <div class="gloss-def">Patrones sistemáticos de <strong>desviación del pensamiento racional</strong> que afectan decisiones. En producto, los sesgos más peligrosos son: confirmación (buscar evidencia que valida lo que ya creemos), disponibilidad (sobrevalorar lo más reciente), y anclaje (fijarse en el primer número que vemos). Conocerlos no elimina el sesgo, pero permite diseñar procesos que lo reduzcan.</div>
-      </div>
-
-      <div class="gloss-card cat-ia searchable" data-tags="sesgo confirmación confirmation bias evidencia validar hipótesis investigación">
-        <div class="gloss-term">Sesgo de Confirmación</div>
-        <div class="gloss-en">Confirmation Bias</div>
-        <div class="gloss-cat">Sesgo</div>
-        <div class="gloss-def">Tendencia a <strong>buscar, interpretar y recordar información que confirma creencias previas</strong>. Es el sesgo más peligroso en research de producto: si ya decidiste que la solución es X, inconscientemente diseñarás entrevistas y analizarás resultados para confirmarlo. Mitigación: busca activamente evidencia que te contradiga. El OST está diseñado en parte para combatirlo.</div>
-      </div>
-
-      <!-- IA -->
-      <div class="gloss-card cat-ia searchable" data-tags="inteligencia artificial ai ml machine learning modelos lenguaje llm">
-        <div class="gloss-term">Inteligencia Artificial</div>
-        <div class="gloss-en">Artificial Intelligence / AI</div>
-        <div class="gloss-cat">IA</div>
-        <div class="gloss-def">Rama de la computación que crea sistemas capaces de realizar tareas que requieren <strong>inteligencia humana</strong>: razonamiento, aprendizaje, comprensión del lenguaje, reconocimiento de patrones. En el contexto de este diplomado, nos enfocamos en IA generativa (LLMs como Claude, GPT-4, Gemini) como herramienta de trabajo para PMs: síntesis, generación de hipótesis, análisis de datos y automatización.</div>
-      </div>
-
-      <div class="gloss-card cat-ia searchable" data-tags="ai slop contenido generado ia basura calidad baja spam automático">
-        <div class="gloss-term">AI Slop</div>
-        <div class="gloss-en">AI-generated low-quality content</div>
-        <div class="gloss-cat">IA</div>
-        <div class="gloss-def">Término coloquial para contenido generado por IA que es <strong>genérico, sin criterio ni edición humana</strong>. El AI Slop ocurre cuando se usa IA sin prompt estructurado, sin contexto relevante, y sin revisión del output. En producto, el AI Slop puede disfrazarse de "research" o "análisis" cuando en realidad es texto plausible sin evidencia real. La diferencia entre un buen output de IA y AI Slop es el criterio del PM que lo revisa.</div>
-      </div>
-
-      <div class="gloss-card cat-ia searchable" data-tags="context window ventana contexto tokens memoria llm modelo límite">
-        <div class="gloss-term">Context Window</div>
-        <div class="gloss-en">Ventana de contexto</div>
-        <div class="gloss-cat">IA</div>
-        <div class="gloss-def">La cantidad de información (texto, archivos, conversación previa) que un modelo de IA puede <strong>"ver" y procesar al mismo tiempo</strong>. Funciona como la memoria de trabajo del modelo — lo que está fuera del context window no existe para él. Implicación práctica: en conversaciones largas, el modelo puede "olvidar" instrucciones dadas al principio. Por eso se recomienda trabajar con chats cortos y focalizados.</div>
-      </div>
-
-      <div class="gloss-card cat-ia searchable" data-tags="token tokenización unidad texto procesamiento llm costo precio">
-        <div class="gloss-term">Token</div>
-        <div class="gloss-en">Token / Tokenization</div>
-        <div class="gloss-cat">IA</div>
-        <div class="gloss-def">Unidad mínima de texto que procesa un modelo de lenguaje. Aproximadamente <strong>1 token ≈ 0.75 palabras en español</strong>. Los LLMs leen y generan texto token a token, no caracter a caracter. El costo de la API de IA se cobra por tokens. Prácticamente: prompts más cortos y específicos consumen menos tokens y producen mejores resultados que prompts largos y vagos.</div>
-      </div>
-
-    </div><!-- end glossary-grid -->
-  </div><!-- end panel-glosario -->
-
-  <!-- ═══════ TIPS IA ═══════ -->
-  <div id="panel-tips">
-    <div class="section-label">Tips para trabajar con IA</div>
-    <div class="tips-grid">
-
-      <div class="tip-card searchable" data-tags="tip contexto reducido eficiencia ia prompt">
-        <div class="tip-num">01</div>
-        <div class="tip-text"><strong>Trabaja con contexto reducido.</strong> No le des toda la información de tu proyecto a la IA en un solo chat. Divide por tarea específica y carga solo el contexto relevante para esa tarea. Menos ruido = mejor output.</div>
-      </div>
-
-      <div class="tip-card searchable" data-tags="tip chat tarea pequeña específica foco">
-        <div class="tip-num">02</div>
-        <div class="tip-text"><strong>Cada chat que abras, piensa en tareas pequeñas y específicas.</strong> Un chat por tarea funciona mejor que un chat que acumula todo. "Sintetiza estas 3 entrevistas" es mejor que "ayúdame con todo mi research".</div>
-      </div>
-
-      <div class="tip-card searchable" data-tags="tip iteración resultado nuevo chat no sigas iterando">
-        <div class="tip-num">03</div>
-        <div class="tip-text"><strong>Si el resultado no te gusta, no sigas iterando hasta el infinito.</strong> Si en dos intentos no das con el resultado que necesitas, cierra el chat y comienza uno nuevo. La acumulación de contexto en un chat que no está funcionando empeora el output progresivamente.</div>
+      <div class="gloss-card cat-negocio searchable" data-tags="tech driven tecnología innovación software digital primero decisiones">
+        <div class="gloss-header"><div><div class="gloss-term">Tech Driven</div><div class="gloss-en">Orientado a tecnología</div></div><span class="gloss-cat-badge">Negocio</span></div>
+        <div class="gloss-def">Enfoque donde la <strong>tecnología impulsa las decisiones de producto</strong>. El riesgo es construir soluciones sofisticadas para problemas que los usuarios no tienen. La IA amplificó este riesgo — más poder técnico no implica automáticamente más valor.</div>
       </div>
 
     </div>
-  </div>
 
-  <!-- ═══════ LIBROS ═══════ -->
+    <div class="section-label">Inteligencia Artificial</div>
+    <div class="glossary-grid">
+
+      <div class="gloss-card cat-ia searchable" data-tags="inteligencia artificial ai ml machine learning modelos lenguaje llm generativa">
+        <div class="gloss-header"><div><div class="gloss-term">Inteligencia Artificial</div><div class="gloss-en">Artificial Intelligence / AI / IA</div></div><span class="gloss-cat-badge">IA</span></div>
+        <div class="gloss-def">Sistemas capaces de realizar tareas que requieren <strong>inteligencia humana</strong>. En este diplomado nos enfocamos en IA generativa (Claude, GPT-4, Gemini) como herramienta de trabajo para PMs: síntesis, hipótesis, análisis y automatización. La IA no reemplaza el criterio — lo amplifica.</div>
+      </div>
+
+      <div class="gloss-card cat-ia searchable" data-tags="ai slop contenido generado basura calidad baja spam sin criterio edición">
+        <div class="gloss-header"><div><div class="gloss-term">AI Slop</div><div class="gloss-en">AI-generated low-quality content</div></div><span class="gloss-cat-badge">IA</span></div>
+        <div class="gloss-def">Contenido generado por IA que es <strong>genérico, sin criterio ni edición humana</strong>. Ocurre cuando se usa IA sin contexto relevante y sin revisión del output. La diferencia entre un buen output y AI Slop es el criterio del PM que lo revisa y filtra.</div>
+      </div>
+
+      <div class="gloss-card cat-ia searchable" data-tags="context window ventana contexto tokens memoria llm modelo límite chat largo">
+        <div class="gloss-header"><div><div class="gloss-term">Context Window</div><div class="gloss-en">Ventana de contexto</div></div><span class="gloss-cat-badge">IA</span></div>
+        <div class="gloss-def">Información que un modelo puede <strong>"ver" y procesar al mismo tiempo</strong>. Funciona como la memoria de trabajo del modelo — lo que está fuera no existe para él. En conversaciones largas el modelo puede "olvidar" instrucciones iniciales. Por eso se recomienda chats cortos y focalizados.</div>
+      </div>
+
+      <div class="gloss-card cat-ia searchable" data-tags="token tokenización unidad texto procesamiento llm costo precio palabras">
+        <div class="gloss-header"><div><div class="gloss-term">Token</div><div class="gloss-en">Token / Tokenization</div></div><span class="gloss-cat-badge">IA</span></div>
+        <div class="gloss-def">Unidad mínima que procesa un modelo de lenguaje. Aprox. <strong>1 token ≈ 0.75 palabras en español</strong>. El costo de la API se cobra por tokens. Prompts más cortos y específicos consumen menos tokens y producen mejores resultados que prompts largos y vagos.</div>
+      </div>
+
+    </div>
+  </div><!-- end panel-glosario -->
+
+  <!-- ══════════════════════════════
+       TIPS IA
+  ══════════════════════════════ -->
+  <div id="panel-tips">
+    <div class="section-label">Tips para trabajar con Inteligencia Artificial</div>
+    <div class="tips-grid">
+
+      <div class="tip-card searchable" data-tags="tip contexto reducido eficiencia ia prompt ruido">
+        <div class="tip-header"><div class="tip-icon">🎯</div><div><div class="tip-num">Tip 01</div><div class="tip-title">Trabaja con contexto reducido</div></div></div>
+        <div class="tip-text">No le des toda la información de tu proyecto a la IA en un solo chat. Divide por tarea específica y carga solo el contexto relevante. <strong>Menos ruido = mejor output.</strong> La IA no es mejor porque tenga más información — es mejor cuando tiene la información correcta.</div>
+      </div>
+
+      <div class="tip-card searchable" data-tags="tip chat tarea pequeña específica foco objetivo único">
+        <div class="tip-header"><div class="tip-icon">🔬</div><div><div class="tip-num">Tip 02</div><div class="tip-title">Un chat = una tarea</div></div></div>
+        <div class="tip-text">Cada chat que abras, piensa en <strong>tareas pequeñas y específicas</strong>. "Sintetiza estas 3 entrevistas" es mejor que "ayúdame con todo mi research". Un chat multi-propósito acumula contexto innecesario que degrada la calidad.</div>
+      </div>
+
+      <div class="tip-card searchable" data-tags="tip iteración resultado nuevo chat no sigas dos intentos">
+        <div class="tip-header"><div class="tip-icon">🔄</div><div><div class="tip-num">Tip 03</div><div class="tip-title">Si no funciona en dos intentos, reinicia</div></div></div>
+        <div class="tip-text">Si el resultado no te gusta, <strong>no sigas iterando hasta el infinito</strong>. Si en dos intentos no das con el resultado, cierra el chat y comienza uno nuevo. La acumulación de contexto en un chat fallido empeora progresivamente el output.</div>
+      </div>
+
+      <div class="tip-card searchable" data-tags="tip rol persona prompt estructura instrucción específica contexto">
+        <div class="tip-header"><div class="tip-icon">🎭</div><div><div class="tip-num">Tip 04</div><div class="tip-title">Dale un rol antes de hacer la pregunta</div></div></div>
+        <div class="tip-text">Antes de tu pregunta, dile a la IA quién debe ser: <strong>"Eres un PM senior con experiencia en apps de movilidad…"</strong>. El rol activa patrones de respuesta más especializados y reduce la genericidad del output dramáticamente.</div>
+      </div>
+
+      <div class="tip-card searchable" data-tags="tip formato output tabla lista estructura especificación resultado esperado">
+        <div class="tip-header"><div class="tip-icon">📋</div><div><div class="tip-num">Tip 05</div><div class="tip-title">Especifica el formato de salida</div></div></div>
+        <div class="tip-text">Siempre dile cómo quieres el resultado: <strong>"Responde en una tabla de 3 columnas", "máximo 5 bullets", "en un párrafo ejecutivo de 100 palabras"</strong>. Especificar el formato elimina ambigüedad y reduce el trabajo de post-edición a cero.</div>
+      </div>
+
+      <div class="tip-card searchable" data-tags="tip audiencia intent objetivo para quién stakeholder ejecutivo equipo desarrollador">
+        <div class="tip-header"><div class="tip-icon">👥</div><div><div class="tip-num">Tip 06</div><div class="tip-title">Declara para quién es el output</div></div></div>
+        <div class="tip-text">Agrega al final de tu prompt: <strong>"esto es para presentar al CEO en 5 minutos"</strong> o <strong>"es para el equipo de desarrollo técnico"</strong>. La IA ajusta automáticamente el nivel de detalle, el tono y el vocabulario según la audiencia declarada.</div>
+      </div>
+
+      <div class="tip-card searchable" data-tags="tip archivos documentos pdf transcripciones subir cargar contexto real evidencia">
+        <div class="tip-header"><div class="tip-icon">📎</div><div><div class="tip-num">Tip 07</div><div class="tip-title">Sube tus archivos reales</div></div></div>
+        <div class="tip-text">La IA con tus archivos reales (entrevistas, reportes, transcripciones) es <strong>10× más útil</strong> que la IA respondiendo desde su conocimiento general. En Claude y ChatGPT puedes subir PDFs, transcripciones y documentos directamente. El trabajo previo de recolección es parte del trabajo con IA.</div>
+      </div>
+
+      <div class="tip-card searchable" data-tags="tip criterio filtrar output evaluar descartar no todo es bueno revisión">
+        <div class="tip-header"><div class="tip-icon">🧠</div><div><div class="tip-num">Tip 08</div><div class="tip-title">Tu criterio valida, la IA genera</div></div></div>
+        <div class="tip-text">Nunca uses el output de IA como decisión final. <strong>Úsalo como punto de partida para tu criterio.</strong> Cuando la IA genera 10 ideas, tu trabajo es elegir 2 y descartar 8 con razones explícitas. Documentar qué descartaste y por qué es parte del ejercicio.</div>
+      </div>
+
+      <div class="tip-card searchable" data-tags="tip prompt negativo restricción no hacer evitar límites instrucción">
+        <div class="tip-header"><div class="tip-icon">🚫</div><div><div class="tip-num">Tip 09</div><div class="tip-title">Usa instrucciones negativas</div></div></div>
+        <div class="tip-text">Además de decirle qué hacer, dile qué <strong>no hacer</strong>: "no uses jerga técnica", "no incluyas más de 5 puntos", "no repitas información que ya mencioné". Las restricciones negativas son igual de poderosas que las instrucciones positivas para mejorar la calidad del output.</div>
+      </div>
+
+    </div>
+  </div><!-- end panel-tips -->
+
+  <!-- ══════════════════════════════
+       LIBROS
+  ══════════════════════════════ -->
   <div id="panel-libros">
-    <div class="section-label">Libros recomendados</div>
+
+    <div class="section-label">Discovery y Product Management</div>
     <div class="books-grid">
 
-      <a href="https://www.goodreads.com/book/show/58046715-continuous-discovery-habits" target="_blank" class="book-card searchable" data-tags="continuous discovery habits teresa torres producto research entrevistas">
-        <div class="book-num">Lectura 01</div>
+      <a href="https://www.goodreads.com/book/show/58046715-continuous-discovery-habits" target="_blank" class="book-card searchable" data-tags="continuous discovery habits teresa torres ost oportunidad entrevistas research">
+        <span class="book-emoji">🌱</span>
+        <div class="book-num">Libro 01</div>
         <div class="book-title">Continuous Discovery Habits</div>
         <div class="book-author">Teresa Torres</div>
-        <div class="book-why">El libro base del módulo. Define el OST y el framework de discovery continuo con usuarios. Lectura obligatoria para PMs.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+        <div class="book-why">El libro base del módulo. Define el OST y el framework de discovery continuo con usuarios. Lectura obligatoria si trabajas en producto.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
-      <a href="https://www.goodreads.com/book/show/42611483-escaping-the-build-trap" target="_blank" class="book-card searchable" data-tags="escaping build trap melissa perri producto valor output outcome feature factory">
-        <div class="book-num">Lectura 02</div>
+      <a href="https://www.goodreads.com/book/show/42611483-escaping-the-build-trap" target="_blank" class="book-card searchable" data-tags="escaping build trap melissa perri valor output outcome feature factory">
+        <span class="book-emoji">🪤</span>
+        <div class="book-num">Libro 02</div>
         <div class="book-title">Escaping the Build Trap</div>
         <div class="book-author">Melissa Perri</div>
-        <div class="book-why">Por qué los equipos de producto se atrapan construyendo features sin valor. Introduce el concepto de outcome over output — clave para entender el propósito del OST.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+        <div class="book-why">Por qué los equipos se atrapan construyendo features sin valor. Introduce outcome over output — clave para entender el propósito del OST.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
-      <a href="https://www.goodreads.com/book/show/35249663-inspired" target="_blank" class="book-card searchable" data-tags="inspired marty cagan silicon valley producto tecnología équipo">
-        <div class="book-num">Lectura 03</div>
+      <a href="https://www.goodreads.com/book/show/35249663-inspired" target="_blank" class="book-card searchable" data-tags="inspired marty cagan silicon valley producto tecnología equipo pm">
+        <span class="book-emoji">⭐</span>
+        <div class="book-num">Libro 03</div>
         <div class="book-title">Inspired</div>
         <div class="book-author">Marty Cagan</div>
-        <div class="book-why">La biblia del product management moderno. Describe cómo funcionan los mejores equipos de producto de Silicon Valley y qué diferencia a los PMs excepcionales.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+        <div class="book-why">La biblia del product management moderno. Describe cómo funcionan los mejores equipos de producto de Silicon Valley.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
-      <a href="https://www.goodreads.com/book/show/10127019-the-lean-startup" target="_blank" class="book-card searchable" data-tags="lean startup eric ries mvp validación hipótesis build measure learn">
-        <div class="book-num">Lectura 04</div>
-        <div class="book-title">The Lean Startup</div>
-        <div class="book-author">Eric Ries</div>
-        <div class="book-why">Fundamento del pensamiento de validación iterativa. Introduce el ciclo Build-Measure-Learn y el concepto de MVP. Esencial para entender por qué se valida antes de construir.</div>
-        <div class="book-link">Ver en Goodreads →</div>
-      </a>
-
-      <a href="https://www.goodreads.com/book/show/39286958-measure-what-matters" target="_blank" class="book-card searchable" data-tags="measure what matters john doerr okr objetivos key results google intel">
-        <div class="book-num">Lectura 05</div>
-        <div class="book-title">Measure What Matters</div>
-        <div class="book-author">John Doerr</div>
-        <div class="book-why">El libro definitivo sobre OKRs. Explica cómo Google, Intel y otras empresas usan OKRs para alinear equipos y medir lo que realmente importa. Lectura clave para el Módulo 4.</div>
-        <div class="book-link">Ver en Goodreads →</div>
-      </a>
-
-      <a href="https://www.goodreads.com/book/show/38228086-pensar-r-pido-pensar-despacio" target="_blank" class="book-card searchable" data-tags="pensar rapido despacio kahneman sistema 1 2 sesgos comportamiento economía conductual">
-        <div class="book-num">Lectura 06</div>
-        <div class="book-title">Pensar Rápido, Pensar Despacio</div>
-        <div class="book-author">Daniel Kahneman</div>
-        <div class="book-why">Base científica de los sesgos cognitivos. Explica el Sistema 1 (rápido, intuitivo) y Sistema 2 (lento, analítico). Fundamental para entender por qué los usuarios no se comportan como esperamos.</div>
-        <div class="book-link">Ver en Goodreads →</div>
-      </a>
-
-      <a href="https://www.goodreads.com/book/show/198172742-pensar-con-claridad" target="_blank" class="book-card searchable" data-tags="pensar claridad rolf dobelli sesgos decisiones mentales">
-        <div class="book-num">Lectura 07</div>
-        <div class="book-title">Pensar con Claridad</div>
-        <div class="book-author">Rolf Dobelli</div>
-        <div class="book-why">Guía práctica sobre los 52 errores de pensamiento más comunes. Complementa a Kahneman con casos aplicados. Útil para identificar sesgos en tu propio proceso de toma de decisiones de producto.</div>
-        <div class="book-link">Ver en Goodreads →</div>
-      </a>
-
-      <a href="https://www.goodreads.com/book/show/199134938-enam-rate-del-problema-no-de-la-soluci-n" target="_blank" class="book-card searchable" data-tags="enamórate del problema uri levine waze problema solución usuario">
-        <div class="book-num">Lectura 08</div>
+      <a href="https://www.goodreads.com/book/show/199134938-enam-rate-del-problema-no-de-la-soluci-n" target="_blank" class="book-card searchable" data-tags="enamórate problema solución uri levine waze usuario">
+        <span class="book-emoji">❤️</span>
+        <div class="book-num">Libro 04</div>
         <div class="book-title">Enamórate del Problema, No de la Solución</div>
         <div class="book-author">Uri Levine</div>
-        <div class="book-why">El fundador de Waze explica por qué el éxito de un producto depende de entender profundamente el problema antes de enamorarse de la solución. Directamente alineado con el enfoque de discovery del módulo.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+        <div class="book-why">El fundador de Waze explica por qué el éxito depende de entender profundamente el problema antes de enamorarse de la solución.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
-      <a href="https://www.goodreads.com/book/show/53138083-working-backwards" target="_blank" class="book-card searchable" data-tags="working backwards amazon aws press release narrative pr faq colin bryar">
-        <div class="book-num">Lectura 09</div>
-        <div class="book-title">Working Backwards</div>
-        <div class="book-author">Colin Bryar & Bill Carr</div>
-        <div class="book-why">Cómo Amazon construye productos comenzando por el comunicado de prensa del cliente. Introduce el principio de "empezar desde el cliente" que sustenta el customer-centric product development.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+      <a href="https://www.goodreads.com/book/show/32809558-jobs-to-be-done" target="_blank" class="book-card searchable" data-tags="jobs to be done jtbd trabajo por hacer cliente motivación christensen">
+        <span class="book-emoji">🔧</span>
+        <div class="book-num">Libro 05</div>
+        <div class="book-title">Jobs to Be Done</div>
+        <div class="book-author">Anthony Ulwick</div>
+        <div class="book-why">Por qué los usuarios "contratan" un producto: no por sus features, sino por el trabajo que necesitan realizar. Reencuadra cómo defines el problema.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
+      </a>
+
+      <a href="https://www.goodreads.com/book/show/25374501-the-lean-product-playbook" target="_blank" class="book-card searchable" data-tags="lean product playbook dan olsen product market fit usuario problema">
+        <span class="book-emoji">📐</span>
+        <div class="book-num">Libro 06</div>
+        <div class="book-title">The Lean Product Playbook</div>
+        <div class="book-author">Dan Olsen</div>
+        <div class="book-why">Guía práctica para encontrar product-market fit con la Pirámide del Producto. Muy operativo — ideal para pasar de hipótesis a solución validada.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
+      </a>
+
+    </div>
+
+    <div class="section-label">Estrategia y Métricas</div>
+    <div class="books-grid">
+
+      <a href="https://www.goodreads.com/book/show/39286958-measure-what-matters" target="_blank" class="book-card searchable" data-tags="measure what matters john doerr okr objetivos key results google intel">
+        <span class="book-emoji">📊</span>
+        <div class="book-num">Libro 07</div>
+        <div class="book-title">Measure What Matters</div>
+        <div class="book-author">John Doerr</div>
+        <div class="book-why">El libro definitivo sobre OKRs. Cómo Google, Intel y otras empresas usan OKRs para alinear equipos y medir lo que realmente importa.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
       <a href="https://www.goodreads.com/book/show/28951428-radical-focus" target="_blank" class="book-card searchable" data-tags="radical focus christina wodtke okr foco prioridades equipo">
-        <div class="book-num">Lectura 10</div>
+        <span class="book-emoji">🎯</span>
+        <div class="book-num">Libro 08</div>
         <div class="book-title">Radical Focus</div>
         <div class="book-author">Christina Wodtke</div>
-        <div class="book-why">OKRs en práctica, contados como una narrativa empresarial. Complementa "Measure What Matters" con una perspectiva más táctica sobre cómo implementar OKRs en un equipo real.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+        <div class="book-why">OKRs en práctica, contados como narrativa empresarial. Más táctico que "Measure What Matters" — cómo implementarlos en un equipo real.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
-      <a href="https://www.goodreads.com/book/show/32809558-jobs-to-be-done" target="_blank" class="book-card searchable" data-tags="jobs to be done jtbd trabajo por hacer cliente motivación clayton christensen">
-        <div class="book-num">Lectura 11</div>
-        <div class="book-title">Jobs to Be Done</div>
-        <div class="book-author">Anthony Ulwick</div>
-        <div class="book-why">Framework para entender por qué los usuarios "contratan" un producto: no por sus features, sino por el trabajo que necesitan realizar. Reencuadra cómo defines el problema y el segmento de usuario.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+      <a href="https://www.goodreads.com/book/show/53138083-working-backwards" target="_blank" class="book-card searchable" data-tags="working backwards amazon aws press release pr faq colin bryar">
+        <span class="book-emoji">↩️</span>
+        <div class="book-num">Libro 09</div>
+        <div class="book-title">Working Backwards</div>
+        <div class="book-author">Colin Bryar & Bill Carr</div>
+        <div class="book-why">Cómo Amazon construye productos comenzando por el comunicado de prensa del cliente. El principio "empezar desde el cliente" en su máxima expresión.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
-      <a href="https://www.goodreads.com/book/show/25374501-the-lean-product-playbook" target="_blank" class="book-card searchable" data-tags="lean product playbook dan olsen product market fit usuario problema solución">
-        <div class="book-num">Lectura 12</div>
-        <div class="book-title">The Lean Product Playbook</div>
-        <div class="book-author">Dan Olsen</div>
-        <div class="book-why">Guía práctica para encontrar product-market fit. Introduce la Pirámide del Producto y un proceso estructurado para pasar de hipótesis de usuario a solución validada. Muy operativo.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+    </div>
+
+    <div class="section-label">Comportamiento y Sesgos</div>
+    <div class="books-grid">
+
+      <a href="https://www.goodreads.com/book/show/38228086-pensar-r-pido-pensar-despacio" target="_blank" class="book-card searchable" data-tags="pensar rapido despacio kahneman sistema sesgos comportamiento economía conductual">
+        <span class="book-emoji">🧠</span>
+        <div class="book-num">Libro 10</div>
+        <div class="book-title">Pensar Rápido, Pensar Despacio</div>
+        <div class="book-author">Daniel Kahneman</div>
+        <div class="book-why">Base científica de los sesgos cognitivos. Sistema 1 (intuitivo) vs Sistema 2 (analítico). Fundamental para entender por qué los usuarios no se comportan como esperamos.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
-      <a href="https://www.goodreads.com/book/show/69242.Made_to_Stick" target="_blank" class="book-card searchable" data-tags="made to stick chip heath dan heath ideas pegajosas comunicación memorable simple">
-        <div class="book-num">Lectura 13</div>
+      <a href="https://www.goodreads.com/book/show/198172742-pensar-con-claridad" target="_blank" class="book-card searchable" data-tags="pensar claridad rolf dobelli sesgos decisiones mentales errores">
+        <span class="book-emoji">💡</span>
+        <div class="book-num">Libro 11</div>
+        <div class="book-title">Pensar con Claridad</div>
+        <div class="book-author">Rolf Dobelli</div>
+        <div class="book-why">Los 52 errores de pensamiento más comunes en formato práctico. Complementa a Kahneman con casos aplicados a decisiones cotidianas.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
+      </a>
+
+      <a href="https://www.goodreads.com/book/show/10127019-the-lean-startup" target="_blank" class="book-card searchable" data-tags="lean startup eric ries mvp validación hipótesis build measure learn">
+        <span class="book-emoji">🚀</span>
+        <div class="book-num">Libro 12</div>
+        <div class="book-title">The Lean Startup</div>
+        <div class="book-author">Eric Ries</div>
+        <div class="book-why">Fundamento del pensamiento de validación iterativa. Introduce Build-Measure-Learn y el concepto de MVP. Esencial para entender por qué se valida antes de construir.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
+      </a>
+
+    </div>
+
+    <div class="section-label">Comunicación y Narrativa</div>
+    <div class="books-grid">
+
+      <a href="https://www.goodreads.com/book/show/69242.Made_to_Stick" target="_blank" class="book-card searchable" data-tags="made to stick chip heath ideas pegajosas comunicación memorable simple">
+        <span class="book-emoji">📌</span>
+        <div class="book-num">Libro 13</div>
         <div class="book-title">Made to Stick</div>
         <div class="book-author">Chip Heath & Dan Heath</div>
-        <div class="book-why">Por qué algunas ideas perduran y otras se olvidan. Útil para PMs que deben comunicar la visión del producto y el problem statement de forma memorable a stakeholders.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+        <div class="book-why">Por qué algunas ideas perduran y otras se olvidan. Útil para comunicar la visión del producto y el problem statement de forma memorable a stakeholders.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
       <a href="https://www.goodreads.com/book/show/9314516-97-things-every-project-manager-should-know" target="_blank" class="book-card searchable" data-tags="97 things project manager gestión proyectos consejos prácticos">
-        <div class="book-num">Lectura 14</div>
+        <span class="book-emoji">📝</span>
+        <div class="book-num">Libro 14</div>
         <div class="book-title">97 Things Every Project Manager Should Know</div>
         <div class="book-author">Barbee Davis</div>
-        <div class="book-why">Colección de consejos prácticos de gestión de proyectos. Complemento práctico para entender la operación de equipos antes de profundizar en metodologías ágiles en el Módulo 5.</div>
-        <div class="book-link">Ver en Goodreads →</div>
+        <div class="book-why">Consejos prácticos de gestión de proyectos. Complemento para entender la operación de equipos antes de profundizar en metodologías ágiles.</div>
+        <div class="book-cta">Ver en Goodreads →</div>
       </a>
 
     </div>
-  </div>
+  </div><!-- end panel-libros -->
 
-  <!-- ═══════ LECTURAS ═══════ -->
+  <!-- ══════════════════════════════
+       LECTURAS
+  ══════════════════════════════ -->
   <div id="panel-lecturas">
-    <div class="section-label">Artículos y lecturas recomendadas</div>
-    <div class="articles-list">
+    <div class="section-label">Artículos y Lecturas Recomendadas</div>
+    <div class="articles-grid">
 
       <a href="https://www.producttalk.org/blog/" target="_blank" class="article-card searchable" data-tags="product talk teresa torres blog discovery continuo ost oportunidad">
-        <div class="article-icon">📝</div>
-        <div>
-          <div class="article-title">Product Talk Blog — Teresa Torres</div>
-          <div class="article-source">producttalk.org · Discovery continuo, OST, entrevistas de usuario</div>
-        </div>
-        <div class="article-arrow">→</div>
+        <div class="article-source-badge">📝 Blog · producttalk.org</div>
+        <div class="article-title">Product Talk Blog</div>
+        <div class="article-desc">El blog de Teresa Torres. Discovery continuo, OST, entrevistas de usuario y todo lo relacionado con el framework del módulo. Recurso de referencia permanente.</div>
+        <div class="article-cta">Leer →</div>
       </a>
 
-      <a href="https://www-productboard-com.translate.goog/blog/product-discovery-how-to-actionable-tips-and-strategies/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc" target="_blank" class="article-card searchable" data-tags="product discovery productboard tips estrategias descubrimiento producto">
-        <div class="article-icon">📝</div>
-        <div>
-          <div class="article-title">Product Discovery: Tips y Estrategias Accionables</div>
-          <div class="article-source">Productboard (traducido al español) · Guía práctica de discovery</div>
-        </div>
-        <div class="article-arrow">→</div>
+      <a href="https://www-productboard-com.translate.goog/blog/product-discovery-how-to-actionable-tips-and-strategies/?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc" target="_blank" class="article-card searchable" data-tags="product discovery productboard tips estrategias descubrimiento">
+        <div class="article-source-badge">📝 Artículo · Productboard (ES)</div>
+        <div class="article-title">Product Discovery: Tips y Estrategias Accionables</div>
+        <div class="article-desc">Guía práctica de discovery traducida al español. Complementa el tablero OST con perspectiva operativa de un equipo de producto real.</div>
+        <div class="article-cta">Leer →</div>
       </a>
 
-      <a href="https://www.scrumio.com/blog/product-discovery/" target="_blank" class="article-card searchable" data-tags="product discovery scrum agile ágil proceso iterativo">
-        <div class="article-icon">📝</div>
-        <div>
-          <div class="article-title">Product Discovery en metodologías ágiles</div>
-          <div class="article-source">Scrumio · Cómo integrar discovery en un proceso Scrum</div>
-        </div>
-        <div class="article-arrow">→</div>
+      <a href="https://www.scrumio.com/blog/product-discovery/" target="_blank" class="article-card searchable" data-tags="product discovery scrum agile ágil proceso iterativo sprint">
+        <div class="article-source-badge">📝 Artículo · Scrumio</div>
+        <div class="article-title">Product Discovery en Metodologías Ágiles</div>
+        <div class="article-desc">Cómo integrar discovery dentro de un proceso Scrum. Puente entre la teoría del módulo y la operación diaria de un equipo ágil.</div>
+        <div class="article-cta">Leer →</div>
       </a>
 
-      <a href="https://www-thefountaininstitute-com.translate.goog/blog/what-is-product-discovery?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc" target="_blank" class="article-card searchable" data-tags="product discovery qué es definición fundamentos instituto">
-        <div class="article-icon">📝</div>
-        <div>
-          <div class="article-title">¿Qué es Product Discovery?</div>
-          <div class="article-source">The Fountain Institute (traducido) · Definición y fundamentos</div>
-        </div>
-        <div class="article-arrow">→</div>
+      <a href="https://www-thefountaininstitute-com.translate.goog/blog/what-is-product-discovery?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc" target="_blank" class="article-card searchable" data-tags="product discovery qué es definición fundamentos introducción">
+        <div class="article-source-badge">📝 Artículo · The Fountain Institute (ES)</div>
+        <div class="article-title">¿Qué es Product Discovery?</div>
+        <div class="article-desc">Definición y fundamentos para quienes se inician en discovery. Buena lectura previa al taller del módulo para nivelar conceptos base.</div>
+        <div class="article-cta">Leer →</div>
       </a>
 
       <a href="https://www.investopedia.com/terms/b/behavioraleconomics.asp" target="_blank" class="article-card searchable" data-tags="behavioral economics economía conductual comportamiento sesgos kahneman thaler">
-        <div class="article-icon">📝</div>
-        <div>
-          <div class="article-title">Behavioral Economics — Introducción</div>
-          <div class="article-source">Investopedia · Economía conductual y sesgos cognitivos</div>
-        </div>
-        <div class="article-arrow">→</div>
+        <div class="article-source-badge">📝 Artículo · Investopedia</div>
+        <div class="article-title">Behavioral Economics — Introducción</div>
+        <div class="article-desc">Economía conductual y sesgos cognitivos explicados con rigor pero accesibilidad. Base conceptual para entender por qué los usuarios no son racionales.</div>
+        <div class="article-cta">Leer →</div>
       </a>
 
-      <a href="https://irrationallabs.com/blog/the-ten-most-influential-behavioral-economics-books/" target="_blank" class="article-card searchable" data-tags="behavioral economics libros economía conductual influencia ranking">
-        <div class="article-icon">📝</div>
-        <div>
-          <div class="article-title">Los 10 libros más influyentes de Behavioral Economics</div>
-          <div class="article-source">Irrational Labs · Lectura complementaria sobre sesgos y comportamiento</div>
-        </div>
-        <div class="article-arrow">→</div>
+      <a href="https://irrationallabs.com/blog/the-ten-most-influential-behavioral-economics-books/" target="_blank" class="article-card searchable" data-tags="behavioral economics libros economía conductual influencia ranking lista">
+        <div class="article-source-badge">📝 Artículo · Irrational Labs</div>
+        <div class="article-title">Los 10 Libros Más Influyentes de Behavioral Economics</div>
+        <div class="article-desc">Lista curada por el laboratorio de Dan Ariely. Complementa la sección de libros del módulo con perspectiva de economía del comportamiento.</div>
+        <div class="article-cta">Leer →</div>
       </a>
 
     </div>
-  </div>
+  </div><!-- end panel-lecturas -->
 
-  <!-- ═══════ PODCASTS ═══════ -->
+  <!-- ══════════════════════════════
+       PODCASTS
+  ══════════════════════════════ -->
   <div id="panel-podcasts">
-    <div class="section-label">Podcasts y canales recomendados</div>
+    <div class="section-label">Podcasts y Canales Recomendados</div>
     <div class="pod-grid">
 
-      <a href="https://www.youtube.com/@LennysPodcast" target="_blank" class="pod-card searchable" data-tags="lenny rachitsky podcast producto growth startup silicon valley pm">
-        <div class="pod-label">YouTube · Podcast</div>
+      <a href="https://www.youtube.com/@LennysPodcast" target="_blank" class="pod-card searchable" data-tags="lenny rachitsky podcast producto growth startup silicon valley pm manager">
+        <span class="pod-emoji">🎙️</span>
+        <div class="pod-platform">YouTube · Podcast semanal</div>
         <div class="pod-name">Lenny's Podcast</div>
-        <div class="pod-desc">El podcast de producto más influyente del momento. Entrevistas con PMs, founders y líderes de las mejores empresas tecnológicas del mundo. Episodios semanales.</div>
-        <div class="pod-link">Ver canal →</div>
+        <div class="pod-format">Entrevistas largas · inglés</div>
+        <div class="pod-desc">El podcast de producto más influyente del momento. Entrevistas con PMs, founders y líderes de las mejores empresas tecnológicas. Nivel: intermedio-avanzado.</div>
+        <div class="pod-cta">Ver canal →</div>
       </a>
 
-      <a href="https://substack.com/@productrocks" target="_blank" class="pod-card searchable" data-tags="product rocks substack newsletter producto europe europeo">
-        <div class="pod-label">Substack · Newsletter</div>
+      <a href="https://substack.com/@productrocks" target="_blank" class="pod-card searchable" data-tags="product rocks substack newsletter producto europe europeo comunidad">
+        <span class="pod-emoji">🎵</span>
+        <div class="pod-platform">Substack · Newsletter</div>
         <div class="pod-name">Product Rocks</div>
-        <div class="pod-desc">Newsletter y comunidad de producto con perspectiva europea. Contenido sobre estrategia de producto, liderazgo y casos de estudio relevantes para el contexto LATAM.</div>
-        <div class="pod-link">Ver en Substack →</div>
+        <div class="pod-format">Artículos semanales · español/inglés</div>
+        <div class="pod-desc">Newsletter y comunidad de producto con perspectiva europea y LATAM. Contenido sobre estrategia, liderazgo y casos de estudio relevantes para el contexto regional.</div>
+        <div class="pod-cta">Ver en Substack →</div>
       </a>
 
-      <a href="https://www.youtube.com/playlist?list=PLEXcbK4FvkxHkjcrJtOxIs_h39HEFG7QR" target="_blank" class="pod-card searchable" data-tags="playlist video producto management recursos youtube">
-        <div class="pod-label">YouTube · Playlist</div>
+      <a href="https://www.youtube.com/playlist?list=PLEXcbK4FvkxHkjcrJtOxIs_h39HEFG7QR" target="_blank" class="pod-card searchable" data-tags="playlist video producto management recursos youtube curado">
+        <span class="pod-emoji">▶️</span>
+        <div class="pod-platform">YouTube · Playlist curada</div>
         <div class="pod-name">Recursos de Producto</div>
-        <div class="pod-desc">Playlist curada con videos sobre product management, discovery y metodologías. Buen punto de entrada para complementar el contenido del diplomado con formato audiovisual.</div>
-        <div class="pod-link">Ver playlist →</div>
+        <div class="pod-format">Videos variados · múltiples idiomas</div>
+        <div class="pod-desc">Playlist curada con videos sobre product management, discovery y metodologías. Buen punto de entrada para complementar el diplomado con formato audiovisual.</div>
+        <div class="pod-cta">Ver playlist →</div>
       </a>
 
-      <a href="https://www.youtube.com/c/MindtheProductTV" target="_blank" class="pod-card searchable" data-tags="mind the product conferencia producto community manager pm">
-        <div class="pod-label">YouTube · Canal</div>
+      <a href="https://www.youtube.com/c/MindtheProductTV" target="_blank" class="pod-card searchable" data-tags="mind the product conferencia producto community manager pm charlas">
+        <span class="pod-emoji">🎤</span>
+        <div class="pod-platform">YouTube · Canal de conferencias</div>
         <div class="pod-name">Mind the Product TV</div>
-        <div class="pod-desc">Canal de la comunidad global de producto más grande del mundo. Charlas de conferencias, talleres y entrevistas con referentes internacionales del product management.</div>
-        <div class="pod-link">Ver canal →</div>
+        <div class="pod-format">Charlas de conferencia · inglés</div>
+        <div class="pod-desc">Canal de la comunidad global de producto más grande del mundo. Charlas de conferencias internacionales con referentes del product management. Nivel: todos los niveles.</div>
+        <div class="pod-cta">Ver canal →</div>
       </a>
 
-      <a href="https://www.youtube.com/@growthrockstar" target="_blank" class="pod-card searchable" data-tags="growth rockstar crecimiento growth hacking métricas producto">
-        <div class="pod-label">YouTube · Canal</div>
+      <a href="https://www.youtube.com/@growthrockstar" target="_blank" class="pod-card searchable" data-tags="growth rockstar crecimiento growth hacking métricas producto data">
+        <span class="pod-emoji">🚀</span>
+        <div class="pod-platform">YouTube · Canal de growth</div>
         <div class="pod-name">Growth Rockstar</div>
+        <div class="pod-format">Videos cortos y entrevistas · inglés</div>
         <div class="pod-desc">Contenido especializado en growth de producto: métricas, experimentos, retención y activación. Perspectiva data-driven que complementa el enfoque de discovery del módulo.</div>
-        <div class="pod-link">Ver canal →</div>
+        <div class="pod-cta">Ver canal →</div>
       </a>
 
     </div>
-  </div>
+  </div><!-- end panel-podcasts -->
 
   <div class="footer">
     <div>
@@ -711,64 +744,39 @@ function toggleNav() { document.getElementById('nav-links').classList.toggle('op
   });
 })();
 
-// ── TAB SYSTEM ──
 var currentTab = 'all';
-var panels = {
-  glosario: document.getElementById('panel-glosario'),
-  tips: document.getElementById('panel-tips'),
-  libros: document.getElementById('panel-libros'),
-  lecturas: document.getElementById('panel-lecturas'),
-  podcasts: document.getElementById('panel-podcasts'),
-};
+var panels = ['glosario','tips','libros','lecturas','podcasts'];
 
-function setTab(tab) {
+function setTab(tab, btn) {
   currentTab = tab;
   document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-  event.target.classList.add('active');
-
-  Object.keys(panels).forEach(function(k) {
-    if (tab === 'all' || tab === k) {
-      panels[k].style.display = 'block';
-    } else {
-      panels[k].style.display = 'none';
-    }
+  btn.classList.add('active');
+  panels.forEach(function(k) {
+    var el = document.getElementById('panel-' + k);
+    el.style.display = (tab === 'all' || tab === k) ? 'block' : 'none';
   });
   doSearch();
 }
 
-// ── SEARCH ──
 function doSearch() {
   var q = document.getElementById('search-input').value.toLowerCase().trim();
   var items = document.querySelectorAll('.searchable');
   var visible = 0;
-
   items.forEach(function(el) {
-    var text = (el.textContent + ' ' + (el.dataset.tags || '')).toLowerCase();
-    var panelId = el.closest('[id^="panel-"]') ? el.closest('[id^="panel-"]').id.replace('panel-', '') : '';
-    var tabOk = currentTab === 'all' || currentTab === panelId;
-
+    var panelEl = el.closest('[id^="panel-"]');
+    var panelKey = panelEl ? panelEl.id.replace('panel-','') : '';
+    var tabOk = currentTab === 'all' || currentTab === panelKey;
     if (!tabOk) { el.classList.add('hidden'); return; }
-
-    if (!q || text.includes(q)) {
-      el.classList.remove('hidden');
-      visible++;
-    } else {
-      el.classList.add('hidden');
-    }
+    var text = (el.textContent + ' ' + (el.dataset.tags||'')).toLowerCase();
+    if (!q || text.includes(q)) { el.classList.remove('hidden'); visible++; }
+    else { el.classList.add('hidden'); }
   });
-
   var countEl = document.getElementById('search-count');
-  if (q) {
-    countEl.textContent = visible + ' resultado' + (visible !== 1 ? 's' : '');
-  } else {
-    countEl.textContent = '';
-  }
-
-  document.getElementById('no-results').classList.toggle('visible', visible === 0 && q.length > 0);
+  countEl.textContent = q ? (visible + ' resultado' + (visible!==1?'s':'')) : '';
+  document.getElementById('no-results').classList.toggle('visible', visible===0 && q.length>0);
 }
 
-// Init — show all panels
-Object.keys(panels).forEach(function(k) { panels[k].style.display = 'block'; });
+panels.forEach(function(k){ document.getElementById('panel-'+k).style.display='block'; });
 </script>
 </body>
 </html>
