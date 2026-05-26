@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Glosario y Recursos — Módulo 2</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-body { padding-top: 52px !important; }
 
-/* ── NAV ── */
+<style>
+body{padding-top:52px!important}
 #site-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
   background: #111029; border-bottom: 2px solid #1500ff;
@@ -26,184 +25,14 @@ body { padding-top: 52px !important; }
 .nav-badge { font-size: 0.5rem; font-weight: 700; text-transform: uppercase; background: rgba(21,0,255,0.3); color: #8899ff; border: 1px solid rgba(21,0,255,0.35); padding: 1px 5px; border-radius: 3px; }
 .nav-toggle { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 8px; margin-left: auto; }
 .nav-toggle span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; }
-@media (max-width: 1000px) {
-  .nav-brand-bold { max-width: 120px; }
+@media (max-width: 1100px) {
+  .nav-brand-bold { max-width: 140px; }
   .nav-toggle { display: flex; }
   .nav-links { display: none; position: absolute; top: 52px; left: 0; right: 0; background: #111029; border-bottom: 2px solid #1500ff; flex-direction: column; align-items: flex-start; padding: 8px 16px 16px; gap: 2px; }
   .nav-links.open { display: flex; }
   .nav-link { width: 100%; }
 }
-
-/* ── BASE ── */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Poppins', sans-serif; background: #f5f5f5; color: #111029; }
-.page { max-width: 1200px; margin: 0 auto; padding: 40px 36px 80px; }
-
-/* ── HEADER ── */
-.header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 2px solid #000; }
-.eyebrow { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.18em; color: #1500ff; margin-bottom: 6px; }
-.h-title { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 800; color: #000; letter-spacing: -0.03em; line-height: 1.05; }
-.h-title span { color: #1500ff; }
-.h-sub { font-size: 0.76rem; color: #666; margin-top: 6px; }
-.header-tag { background: #000; color: #fff; font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 6px 14px; border-radius: 4px; white-space: nowrap; }
-
-/* ── SEARCH ── */
-.search-wrap { background: #fff; border: 1.5px solid rgba(0,0,0,0.14); border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; display: flex; gap: 12px; align-items: center; }
-.search-icon { color: #1500ff; font-size: 1.1rem; flex-shrink: 0; }
-.search-input { flex: 1; border: none; outline: none; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 500; color: #000; background: transparent; }
-.search-input::placeholder { color: #aaaabb; font-weight: 400; }
-.search-count { font-size: 0.65rem; font-weight: 600; color: #aaaabb; white-space: nowrap; }
-
-/* ── TAB NAV ── */
-.tab-nav { display: flex; gap: 6px; margin-bottom: 32px; flex-wrap: wrap; border-bottom: 1.5px solid rgba(0,0,0,0.1); padding-bottom: 0; }
-.tab-btn {
-  padding: 10px 18px; border-radius: 8px 8px 0 0; font-size: 0.68rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer;
-  border: 1.5px solid transparent; border-bottom: none;
-  background: transparent; color: #999; transition: all 0.15s;
-  font-family: 'Poppins', sans-serif; position: relative; bottom: -1px;
-  display: flex; align-items: center; gap: 7px;
-}
-.tab-btn:hover { color: #1500ff; background: rgba(21,0,255,0.04); }
-.tab-btn.active { background: #f5f5f5; border-color: rgba(0,0,0,0.1); color: #1500ff; border-bottom-color: #f5f5f5; }
-.tab-btn .tab-icon { font-size: 1rem; }
-.tab-btn .tab-count { font-size: 0.55rem; background: rgba(0,0,0,0.07); color: #666; padding: 1px 6px; border-radius: 999px; }
-.tab-btn.active .tab-count { background: rgba(21,0,255,0.1); color: #1500ff; }
-
-/* ── SECTION LABEL ── */
-.section-label { font-size: 0.58rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; color: #1500ff; margin-bottom: 16px; margin-top: 28px; display: flex; align-items: center; gap: 10px; }
-.section-label:first-child { margin-top: 0; }
-.section-label::after { content: ''; flex: 1; height: 1px; background: rgba(0,0,0,0.1); }
-
-/* ══════════════════════════════
-   GLOSARIO
-══════════════════════════════ */
-.gloss-subtitle {
-  font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
-  letter-spacing: 0.12em; color: #000;
-  padding: 8px 14px; background: #000; color: #fff;
-  border-radius: 6px; display: inline-block;
-  margin-bottom: 12px; margin-top: 24px;
-}
-.gloss-subtitle:first-of-type { margin-top: 0; }
-
-.glossary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; margin-bottom: 8px; }
-
-.gloss-card {
-  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
-  padding: 18px 20px; border-left: 4px solid #1500ff;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-.gloss-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-.gloss-card.cat-metricas { border-left-color: #c96a00; }
-.gloss-card.cat-metodologia { border-left-color: #007a5e; }
-.gloss-card.cat-ia { border-left-color: #5a006b; }
-.gloss-card.cat-negocio { border-left-color: #006060; }
-.gloss-card.cat-sesgo { border-left-color: #8b0000; }
-
-.gloss-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
-.gloss-term { font-size: 0.95rem; font-weight: 800; color: #000; line-height: 1.2; }
-.gloss-en { font-size: 0.6rem; font-weight: 500; color: #aaaabb; margin-top: 1px; font-style: italic; }
-.gloss-cat-badge {
-  font-size: 0.52rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-  padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0;
-}
-.cat-metricas .gloss-cat-badge { color: #c96a00; background: rgba(201,106,0,0.09); border: 1px solid rgba(201,106,0,0.2); }
-.cat-metodologia .gloss-cat-badge { color: #007a5e; background: rgba(0,122,94,0.09); border: 1px solid rgba(0,122,94,0.2); }
-.cat-ia .gloss-cat-badge { color: #5a006b; background: rgba(90,0,107,0.07); border: 1px solid rgba(90,0,107,0.18); }
-.cat-negocio .gloss-cat-badge { color: #006060; background: rgba(0,96,96,0.07); border: 1px solid rgba(0,96,96,0.18); }
-.cat-sesgo .gloss-cat-badge { color: #8b0000; background: rgba(139,0,0,0.07); border: 1px solid rgba(139,0,0,0.18); }
-.cat-producto .gloss-cat-badge { color: #1500ff; background: rgba(21,0,255,0.07); border: 1px solid rgba(21,0,255,0.18); }
-.gloss-def { font-size: 0.75rem; font-weight: 400; color: #111029; line-height: 1.65; }
-.gloss-def strong { font-weight: 600; color: #000; }
-
-/* ══════════════════════════════
-   TIPS — dark cards matching index style
-══════════════════════════════ */
-.tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
-
-.tip-card {
-  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
-  padding: 20px 22px; display: flex; flex-direction: column; gap: 10px;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  border-top: 4px solid #111029;
-}
-.tip-card:hover { border-color: #1500ff; box-shadow: 0 4px 20px rgba(21,0,255,0.08); }
-.tip-header { display: flex; align-items: center; gap: 10px; }
-.tip-icon { font-size: 1.4rem; flex-shrink: 0; }
-.tip-num { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #1500ff; }
-.tip-title { font-size: 0.88rem; font-weight: 700; color: #000; line-height: 1.3; }
-.tip-text { font-size: 0.75rem; font-weight: 400; color: #111029; line-height: 1.65; }
-.tip-text strong { font-weight: 600; color: #000; }
-
-/* ══════════════════════════════
-   LIBROS
-══════════════════════════════ */
-.books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
-
-.book-card {
-  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
-  padding: 20px 22px; text-decoration: none; color: #111029;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  display: flex; flex-direction: column; gap: 5px;
-}
-.book-card:hover { border-color: #007a5e; box-shadow: 0 4px 20px rgba(0,122,94,0.1); }
-.book-emoji { font-size: 2rem; margin-bottom: 4px; display: block; }
-.book-num { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: #007a5e; }
-.book-title { font-size: 0.9rem; font-weight: 700; color: #000; line-height: 1.25; }
-.book-author { font-size: 0.68rem; font-weight: 500; color: #666; }
-.book-why { font-size: 0.71rem; font-weight: 400; color: #111029; line-height: 1.55; margin-top: 4px; flex: 1; }
-.book-cta { margin-top: 10px; font-size: 0.6rem; font-weight: 700; color: #007a5e; text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 4px; }
-.book-segment-title { grid-column: 1/-1; }
-
-/* ══════════════════════════════
-   ARTÍCULOS
-══════════════════════════════ */
-.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; }
-
-.article-card {
-  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
-  padding: 18px 20px; text-decoration: none; color: #111029;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  display: flex; flex-direction: column; gap: 6px;
-  border-left: 4px solid #c96a00;
-}
-.article-card:hover { border-color: #c96a00; box-shadow: 0 4px 20px rgba(201,106,0,0.1); }
-.article-source-badge { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #c96a00; }
-.article-title { font-size: 0.88rem; font-weight: 700; color: #000; line-height: 1.3; }
-.article-desc { font-size: 0.71rem; color: #666; line-height: 1.5; flex: 1; }
-.article-cta { font-size: 0.6rem; font-weight: 700; color: #c96a00; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
-
-/* ══════════════════════════════
-   PODCASTS
-══════════════════════════════ */
-.pod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
-
-.pod-card {
-  background: #fff; border: 1.5px solid rgba(0,0,0,0.1); border-radius: 12px;
-  padding: 20px 22px; text-decoration: none; color: #111029;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  display: flex; flex-direction: column; gap: 5px;
-}
-.pod-card:hover { border-color: #5a006b; box-shadow: 0 4px 20px rgba(90,0,107,0.1); }
-.pod-emoji { font-size: 2rem; margin-bottom: 4px; display: block; }
-.pod-platform { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #5a006b; }
-.pod-name { font-size: 0.9rem; font-weight: 700; color: #000; line-height: 1.25; }
-.pod-format { font-size: 0.62rem; font-weight: 600; color: #aaaabb; }
-.pod-desc { font-size: 0.71rem; color: #111029; line-height: 1.55; margin-top: 4px; flex: 1; }
-.pod-cta { margin-top: 10px; font-size: 0.6rem; font-weight: 700; color: #5a006b; text-transform: uppercase; letter-spacing: 0.08em; }
-
-/* ── NO RESULTS ── */
-.no-results { text-align: center; padding: 48px 24px; color: #aaaabb; font-size: 0.82rem; display: none; }
-.no-results.visible { display: block; }
-.searchable.hidden { display: none !important; }
-
-/* ── FOOTER ── */
-.footer { margin-top: 56px; padding-top: 20px; border-top: 1.5px solid #000; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
-.footer-module { font-size: 0.72rem; font-weight: 700; color: #000; }
-.footer-sub { font-size: 0.62rem; color: #666; margin-top: 2px; }
 </style>
-
 <nav id="site-nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-brand">
@@ -213,15 +42,27 @@ body { font-family: 'Poppins', sans-serif; background: #f5f5f5; color: #111029; 
     </a>
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Menú"><span></span><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
-      <a href="guia-workshop.html" class="nav-link">Guía Workshop</a>
-      <a href="double-diamond.html" class="nav-link">Double Diamond</a>
-      <a href="stack-herramientas.html" class="nav-link">Stack de Herramientas</a>
-      <a href="diverger-converger.html" class="nav-link">Diverger · Converger</a>
-      <a href="capas-ia.html" class="nav-link">Capas de IA <span class="nav-badge">Adelanto</span></a>
-      <a href="recursos.html" class="nav-link active">Glosario y Recursos</a>
+      <a href="guia-workshop.html" class="nav-link" data-page="guia-workshop.html">Guía Workshop</a>
+      <a href="double-diamond.html" class="nav-link" data-page="double-diamond.html">Double Diamond</a>
+      <a href="stack-herramientas.html" class="nav-link" data-page="stack-herramientas.html">Stack de Herramientas</a>
+      <a href="diverger-converger.html" class="nav-link" data-page="diverger-converger.html">Diverger · Converger</a>
+      <a href="capas-ia.html" class="nav-link" data-page="capas-ia.html">Capas de Inteligencia Artificial <span class="nav-badge">Adelanto</span></a>
+      <a href="recursos.html" class="nav-link" data-page="recursos.html">Glosario y Recursos</a>
     </div>
   </div>
 </nav>
+<script>
+function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
+(function() {
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link[data-page]').forEach(function(l) {
+    if (l.getAttribute('data-page') === path) l.classList.add('active');
+  });
+})();
+</script>
+
+
+
 
 <div class="page">
 
@@ -735,48 +576,24 @@ body { font-family: 'Poppins', sans-serif; background: #f5f5f5; color: #111029; 
 
 </div><!-- end page -->
 
+
 <script>
 function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
 (function() {
   var path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link').forEach(function(l) {
-    if (l.getAttribute('href') === path) l.classList.add('active');
+  document.querySelectorAll('.nav-link[data-page]').forEach(function(l) {
+    if (l.getAttribute('data-page') === path) l.classList.add('active');
   });
 })();
-
-var currentTab = 'all';
-var panels = ['glosario','tips','libros','lecturas','podcasts'];
-
-function setTab(tab, btn) {
-  currentTab = tab;
-  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  panels.forEach(function(k) {
-    var el = document.getElementById('panel-' + k);
-    el.style.display = (tab === 'all' || tab === k) ? 'block' : 'none';
-  });
-  doSearch();
-}
-
-function doSearch() {
-  var q = document.getElementById('search-input').value.toLowerCase().trim();
-  var items = document.querySelectorAll('.searchable');
-  var visible = 0;
-  items.forEach(function(el) {
-    var panelEl = el.closest('[id^="panel-"]');
-    var panelKey = panelEl ? panelEl.id.replace('panel-','') : '';
-    var tabOk = currentTab === 'all' || currentTab === panelKey;
-    if (!tabOk) { el.classList.add('hidden'); return; }
-    var text = (el.textContent + ' ' + (el.dataset.tags||'')).toLowerCase();
-    if (!q || text.includes(q)) { el.classList.remove('hidden'); visible++; }
-    else { el.classList.add('hidden'); }
-  });
-  var countEl = document.getElementById('search-count');
-  countEl.textContent = q ? (visible + ' resultado' + (visible!==1?'s':'')) : '';
-  document.getElementById('no-results').classList.toggle('visible', visible===0 && q.length>0);
-}
-
-panels.forEach(function(k){ document.getElementById('panel-'+k).style.display='block'; });
 </script>
 </body>
 </html>
+<script>
+function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
+(function() {
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link[data-page]').forEach(function(l) {
+    if (l.getAttribute('data-page') === path) l.classList.add('active');
+  });
+})();
+</script>

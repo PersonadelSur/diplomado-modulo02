@@ -183,169 +183,58 @@ body { font-family: var(--font); background: var(--bg); color: var(--body); }
   .rule-banner { grid-template-columns: 1fr; }
 }
 </style>
-<style>
-body { padding-top: 52px !important; }
-</style>
-</head>
-<body>
-<!-- NAV HEADER -->
-<nav id="site-nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-brand">
-      <span class="nav-brand-thin">Módulo 2</span>
-      <span class="nav-brand-sep">|</span>
-      <span class="nav-brand-bold">Insights, Comportamiento y Oportunidades de Producto</span>
-    </a>
-    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menú">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links" id="nav-links">
-      <a href="guia-workshop.html" class="nav-link">Guía Workshop</a>
-      <a href="double-diamond.html" class="nav-link">Double Diamond</a>
-      <a href="stack-herramientas.html" class="nav-link">Stack de Herramientas</a>
-      <a href="diverger-converger.html" class="nav-link">Diverger · Converger</a>
-      <a href="capas-ia.html" class="nav-link">Capas de Inteligencia Artificial <span class="nav-badge">Adelanto</span></a>
-      <a href="recursos.html" class="nav-link">Glosario y Recursos</a>
-    </div>
-  </div>
-</nav>
+
 <style>
 #site-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 9999;
-  background: #111029;
-  border-bottom: 2px solid #1500ff;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  background: #111029; border-bottom: 2px solid #1500ff;
   font-family: 'Poppins', sans-serif;
 }
-.nav-inner {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 28px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  flex-shrink: 0;
-  margin-right: 32px;
-}
-.nav-brand-thin {
-  font-size: 0.7rem;
-  font-weight: 300;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-.nav-brand-sep {
-  font-size: 0.7rem;
-  color: #1500ff;
-  font-weight: 300;
-}
-.nav-brand-bold {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 340px;
-}
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  flex: 1;
-}
-.nav-link {
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.55);
-  text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  transition: color 0.15s, background 0.15s;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.nav-link:hover {
-  color: #ffffff;
-  background: rgba(255,255,255,0.07);
-}
-.nav-link.active {
-  color: #ffffff;
-  background: rgba(21,0,255,0.25);
-  border: 1px solid rgba(21,0,255,0.4);
-}
-.nav-badge {
-  font-size: 0.52rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background: rgba(21,0,255,0.3);
-  color: #8899ff;
-  border: 1px solid rgba(21,0,255,0.35);
-  padding: 1px 5px;
-  border-radius: 3px;
-}
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  margin-left: auto;
-}
-.nav-toggle span {
-  display: block;
-  width: 20px; height: 2px;
-  background: #fff;
-  border-radius: 2px;
-  transition: 0.2s;
-}
-@media (max-width: 900px) {
-  .nav-brand-bold { max-width: 160px; }
+.nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 28px; height: 52px; display: flex; align-items: center; }
+.nav-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; flex-shrink: 0; margin-right: 24px; }
+.nav-brand-thin { font-size: 0.7rem; font-weight: 300; color: rgba(255,255,255,0.5); white-space: nowrap; }
+.nav-brand-sep { font-size: 0.7rem; color: #1500ff; }
+.nav-brand-bold { font-size: 0.7rem; font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 300px; }
+.nav-links { display: flex; align-items: center; gap: 2px; flex: 1; }
+.nav-link { font-size: 0.62rem; font-weight: 600; color: rgba(255,255,255,0.55); text-decoration: none; padding: 5px 10px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.07em; transition: color 0.15s, background 0.15s; white-space: nowrap; display: flex; align-items: center; gap: 5px; }
+.nav-link:hover { color: #fff; background: rgba(255,255,255,0.07); }
+.nav-link.active { color: #fff; background: rgba(21,0,255,0.25); border: 1px solid rgba(21,0,255,0.4); }
+.nav-badge { font-size: 0.5rem; font-weight: 700; text-transform: uppercase; background: rgba(21,0,255,0.3); color: #8899ff; border: 1px solid rgba(21,0,255,0.35); padding: 1px 5px; border-radius: 3px; }
+.nav-toggle { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 8px; margin-left: auto; }
+.nav-toggle span { display: block; width: 20px; height: 2px; background: #fff; border-radius: 2px; }
+@media (max-width: 1100px) {
+  .nav-brand-bold { max-width: 140px; }
   .nav-toggle { display: flex; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 52px; left: 0; right: 0;
-    background: #111029;
-    border-bottom: 2px solid #1500ff;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 8px 16px 16px;
-    gap: 2px;
-  }
+  .nav-links { display: none; position: absolute; top: 52px; left: 0; right: 0; background: #111029; border-bottom: 2px solid #1500ff; flex-direction: column; align-items: flex-start; padding: 8px 16px 16px; gap: 2px; }
   .nav-links.open { display: flex; }
   .nav-link { width: 100%; }
 }
 </style>
-<script>
-function toggleNav() {
-  document.getElementById('nav-links').classList.toggle('open');
-}
-// Mark active link
-(function() {
-  var path = window.location.pathname.split('/').pop() || 'index.html';
-  var links = document.querySelectorAll('.nav-link');
-  links.forEach(function(l) {
-    if (l.getAttribute('href') === path) l.classList.add('active');
-  });
-})();
-</script>
+<style>body{padding-top:52px!important}</style>
+</head>
+<body>
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-thin">Módulo 2</span>
+      <span class="nav-brand-sep">&nbsp;|&nbsp;</span>
+      <span class="nav-brand-bold">Insights, Comportamiento y Oportunidades de Producto</span>
+    </a>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Menú"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="nav-links">
+      <a href="guia-workshop.html" class="nav-link" data-page="guia-workshop.html">Guía Workshop</a>
+      <a href="double-diamond.html" class="nav-link" data-page="double-diamond.html">Double Diamond</a>
+      <a href="stack-herramientas.html" class="nav-link" data-page="stack-herramientas.html">Stack de Herramientas</a>
+      <a href="diverger-converger.html" class="nav-link" data-page="diverger-converger.html">Diverger · Converger</a>
+      <a href="capas-ia.html" class="nav-link" data-page="capas-ia.html">Capas de Inteligencia Artificial <span class="nav-badge">Adelanto</span></a>
+      <a href="recursos.html" class="nav-link" data-page="recursos.html">Glosario y Recursos</a>
+    </div>
+  </div>
+</nav>
+<!-- NAV HEADER -->
+
+
+
 
 <div class="page">
 
@@ -565,5 +454,14 @@ function toggleNav() {
   </div>
 
 </div>
+<script>
+function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
+(function() {
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link[data-page]').forEach(function(l) {
+    if (l.getAttribute('data-page') === path) l.classList.add('active');
+  });
+})();
+</script>
 </body>
 </html>
