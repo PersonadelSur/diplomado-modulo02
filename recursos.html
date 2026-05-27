@@ -159,19 +159,6 @@ body{padding-top:52px!important}
     </div>
   </div>
 </nav>
-<script>
-function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
-(function() {
-  var path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link[data-page]').forEach(function(l) {
-    if (l.getAttribute('data-page') === path) l.classList.add('active');
-  });
-})();
-</script>
-
-
-
-
 <div class="page">
 
   <div class="header">
@@ -684,8 +671,8 @@ function toggleNav() { document.getElementById('nav-links').classList.toggle('op
 
 </div><!-- end page -->
 
-
 <script>
+// ── NAV ──
 function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
 (function() {
   var path = window.location.pathname.split('/').pop() || 'index.html';
@@ -693,15 +680,47 @@ function toggleNav() { document.getElementById('nav-links').classList.toggle('op
     if (l.getAttribute('data-page') === path) l.classList.add('active');
   });
 })();
+
+// ── TABS ──
+var currentTab = 'all';
+var panels = ['glosario','tips','libros','lecturas','podcasts'];
+
+function setTab(tab, btn) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  panels.forEach(function(k) {
+    var el = document.getElementById('panel-' + k);
+    if (el) el.style.display = (tab === 'all' || tab === k) ? 'block' : 'none';
+  });
+  doSearch();
+}
+
+// ── SEARCH ──
+function doSearch() {
+  var q = document.getElementById('search-input').value.toLowerCase().trim();
+  var items = document.querySelectorAll('.searchable');
+  var visible = 0;
+  items.forEach(function(el) {
+    var panelEl = el.closest('[id^="panel-"]');
+    var panelKey = panelEl ? panelEl.id.replace('panel-', '') : '';
+    var tabOk = currentTab === 'all' || currentTab === panelKey;
+    if (!tabOk) { el.classList.add('hidden'); return; }
+    var text = (el.textContent + ' ' + (el.dataset.tags || '')).toLowerCase();
+    if (!q || text.includes(q)) { el.classList.remove('hidden'); visible++; }
+    else { el.classList.add('hidden'); }
+  });
+  var countEl = document.getElementById('search-count');
+  if (countEl) countEl.textContent = q ? (visible + ' resultado' + (visible !== 1 ? 's' : '')) : '';
+  var noRes = document.getElementById('no-results');
+  if (noRes) noRes.classList.toggle('visible', visible === 0 && q.length > 0);
+}
+
+// ── INIT: show all panels ──
+panels.forEach(function(k) {
+  var el = document.getElementById('panel-' + k);
+  if (el) el.style.display = 'block';
+});
 </script>
 </body>
 </html>
-<script>
-function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
-(function() {
-  var path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link[data-page]').forEach(function(l) {
-    if (l.getAttribute('data-page') === path) l.classList.add('active');
-  });
-})();
-</script>
