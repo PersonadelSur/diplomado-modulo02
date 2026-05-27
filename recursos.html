@@ -194,8 +194,8 @@ body{padding-top:52px!important}
   <!-- ══════════════════════════════
        GLOSARIO
   ══════════════════════════════ -->
-  <div id="panel-glosario">
 
+  <div id="panel-glosario" style="display:none">
     <div class="section-label">Metodología de Producto</div>
     <div class="glossary-grid">
 
@@ -349,12 +349,10 @@ body{padding-top:52px!important}
         <div class="gloss-def">Unidad mínima que procesa un modelo de lenguaje. Aprox. <strong>1 token ≈ 0.75 palabras en español</strong>. El costo de la API se cobra por tokens. Prompts más cortos y específicos consumen menos tokens y producen mejores resultados que prompts largos y vagos.</div>
       </div>
 
+  </div>
   </div><!-- end panel-glosario -->
 
-  <!-- ══════════════════════════════
-       PRIORIZACIÓN
-  ══════════════════════════════ -->
-  <div id="panel-priorizacion">
+  <div id="panel-priorizacion" style="display:none">
     <div class="section-label">Metodologías de Priorización</div>
     <div class="glossary-grid priorizacion-grid">
 
@@ -379,12 +377,10 @@ body{padding-top:52px!important}
       </div>
 
     </div>
+  </div>
   </div><!-- end panel-priorizacion -->
 
-  <!-- ══════════════════════════════
-       TIPS IA
-  ══════════════════════════════ -->
-  <div id="panel-tips">
+  <div id="panel-tips" style="display:none">
     <div class="section-label">Tips para trabajar con Inteligencia Artificial</div>
     <div class="tips-grid">
 
@@ -434,13 +430,10 @@ body{padding-top:52px!important}
       </div>
 
     </div>
+  </div>
   </div><!-- end panel-tips -->
 
-  <!-- ══════════════════════════════
-       LIBROS
-  ══════════════════════════════ -->
-  <div id="panel-libros">
-
+  <div id="panel-libros" style="display:none">
     <div class="section-label">Discovery y Product Management</div>
     <div class="books-grid">
 
@@ -586,12 +579,10 @@ body{padding-top:52px!important}
       </a>
 
     </div>
+  </div>
   </div><!-- end panel-libros -->
 
-  <!-- ══════════════════════════════
-       LECTURAS
-  ══════════════════════════════ -->
-  <div id="panel-lecturas">
+  <div id="panel-lecturas" style="display:none">
     <div class="section-label">Artículos y Lecturas Recomendadas</div>
     <div class="articles-grid">
 
@@ -638,12 +629,10 @@ body{padding-top:52px!important}
       </a>
 
     </div>
+  </div>
   </div><!-- end panel-lecturas -->
 
-  <!-- ══════════════════════════════
-       PODCASTS
-  ══════════════════════════════ -->
-  <div id="panel-podcasts">
+  <div id="panel-podcasts" style="display:none">
     <div class="section-label">Podcasts y Canales Recomendados</div>
     <div class="pod-grid">
 
@@ -693,17 +682,10 @@ body{padding-top:52px!important}
       </a>
 
     </div>
+  </div>
   </div><!-- end panel-podcasts -->
 
-  <div class="footer">
-    <div>
-      <div class="footer-module">Insights, Comportamiento y Oportunidades de Producto</div>
-      <div class="footer-sub">Módulo 2 de 7 · Diplomado en Estrategia y Experiencia de Productos en la Era de la IA · FEN UChile · 1S 2026</div>
-    </div>
-  </div>
-
 </div><!-- end page -->
-
 <script>
 // ── NAV ──
 function toggleNav() { document.getElementById('nav-links').classList.toggle('open'); }
@@ -714,65 +696,62 @@ function toggleNav() { document.getElementById('nav-links').classList.toggle('op
   });
 })();
 
-// ── TABS ──
-var currentTab = 'all';
-var panels = ['glosario','priorizacion','tips','libros','lecturas','podcasts'];
+// ── STATE ──
+var ALL = 'all';
+var currentTab = ALL;
+var PANELS = ['glosario','priorizacion','tips','libros','lecturas','podcasts'];
 
+// ── SHOW/HIDE PANELS ──
+function showPanels(tab) {
+  PANELS.forEach(function(k) {
+    var el = document.getElementById('panel-' + k);
+    if (!el) return;
+    el.style.display = (tab === ALL || tab === k) ? 'block' : 'none';
+  });
+}
+
+// ── FILTER CARDS ──
+function filterCards(q) {
+  var visible = 0;
+  PANELS.forEach(function(k) {
+    var panel = document.getElementById('panel-' + k);
+    if (!panel || panel.style.display === 'none') return;
+    panel.querySelectorAll('.searchable').forEach(function(card) {
+      var text = (card.textContent + ' ' + (card.dataset.tags || '')).toLowerCase();
+      var match = !q || text.indexOf(q) !== -1;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+  });
+  return visible;
+}
+
+// ── TAB CLICK ──
 function setTab(tab, btn) {
   currentTab = tab;
-  // Reset active state on tabs
   document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
-  // Show/hide panels and reset hidden on their cards
-  panels.forEach(function(k) {
+  // Reset all card visibility before showing panels
+  PANELS.forEach(function(k) {
     var panel = document.getElementById('panel-' + k);
-    if (!panel) return;
-    var isActive = (tab === 'all' || tab === k);
-    panel.style.display = isActive ? 'block' : 'none';
-    // Remove hidden from all cards in active panel so search can re-evaluate
-    if (isActive) {
-      panel.querySelectorAll('.searchable').forEach(function(el) {
-        el.classList.remove('hidden');
-      });
-    }
+    if (panel) panel.querySelectorAll('.searchable').forEach(function(c) { c.style.display = ''; });
   });
+  showPanels(tab);
   doSearch();
 }
 
 // ── SEARCH ──
 function doSearch() {
   var q = document.getElementById('search-input').value.toLowerCase().trim();
-  var visible = 0;
-  panels.forEach(function(k) {
-    var panel = document.getElementById('panel-' + k);
-    if (!panel) return;
-    var isActivePanel = (currentTab === 'all' || currentTab === k);
-    if (!isActivePanel) {
-      // Hide all items in inactive panels
-      panel.querySelectorAll('.searchable').forEach(function(el) { el.classList.add('hidden'); });
-      return;
-    }
-    // Active panel — apply search filter
-    panel.querySelectorAll('.searchable').forEach(function(el) {
-      var text = (el.textContent + ' ' + (el.dataset.tags || '')).toLowerCase();
-      if (!q || text.includes(q)) { el.classList.remove('hidden'); visible++; }
-      else { el.classList.add('hidden'); }
-    });
-  });
+  var visible = filterCards(q);
   var countEl = document.getElementById('search-count');
-  if (countEl) countEl.textContent = q ? (visible + ' resultado' + (visible !== 1 ? 's' : '')) : '';
+  if (countEl) countEl.textContent = q ? visible + ' resultado' + (visible !== 1 ? 's' : '') : '';
   var noRes = document.getElementById('no-results');
   if (noRes) noRes.classList.toggle('visible', visible === 0 && q.length > 0);
 }
 
-// ── INIT: show all panels, clear hidden ──
-panels.forEach(function(k) {
-  var el = document.getElementById('panel-' + k);
-  if (el) {
-    el.style.display = 'block';
-    el.querySelectorAll('.searchable').forEach(function(c) { c.classList.remove('hidden'); });
-  }
-});
+// ── INIT ──
+showPanels(ALL);
 </script>
 </body>
 </html>
