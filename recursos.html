@@ -182,6 +182,7 @@ body{padding-top:52px!important}
   <div class="tab-nav">
     <button class="tab-btn active" onclick="setTab('all',this)"><span class="tab-icon">◈</span> Todo</button>
     <button class="tab-btn" onclick="setTab('glosario',this)"><span class="tab-icon">📖</span> Glosario <span class="tab-count">31</span></button>
+    <button class="tab-btn" onclick="setTab('priorizacion',this)"><span class="tab-icon">🎯</span> Priorización <span class="tab-count">4</span></button>
     <button class="tab-btn" onclick="setTab('tips',this)"><span class="tab-icon">⚡</span> Tips IA <span class="tab-count">9</span></button>
     <button class="tab-btn" onclick="setTab('libros',this)"><span class="tab-icon">📚</span> Libros <span class="tab-count">14</span></button>
     <button class="tab-btn" onclick="setTab('lecturas',this)"><span class="tab-icon">📰</span> Lecturas <span class="tab-count">6</span></button>
@@ -348,7 +349,12 @@ body{padding-top:52px!important}
         <div class="gloss-def">Unidad mínima que procesa un modelo de lenguaje. Aprox. <strong>1 token ≈ 0.75 palabras en español</strong>. El costo de la API se cobra por tokens. Prompts más cortos y específicos consumen menos tokens y producen mejores resultados que prompts largos y vagos.</div>
       </div>
 
+  </div><!-- end panel-glosario -->
 
+  <!-- ══════════════════════════════
+       PRIORIZACIÓN
+  ══════════════════════════════ -->
+  <div id="panel-priorizacion">
     <div class="section-label">Metodologías de Priorización</div>
     <div class="glossary-grid priorizacion-grid">
 
@@ -373,7 +379,7 @@ body{padding-top:52px!important}
       </div>
 
     </div>
-  </div><!-- end panel-glosario -->
+  </div><!-- end panel-priorizacion -->
 
   <!-- ══════════════════════════════
        TIPS IA
@@ -710,7 +716,7 @@ function toggleNav() { document.getElementById('nav-links').classList.toggle('op
 
 // ── TABS ──
 var currentTab = 'all';
-var panels = ['glosario','tips','libros','lecturas','podcasts'];
+var panels = ['glosario','priorizacion','tips','libros','lecturas','podcasts'];
 
 function setTab(tab, btn) {
   currentTab = tab;
