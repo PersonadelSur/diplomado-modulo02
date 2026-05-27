@@ -45,6 +45,9 @@ body{font-family:'Poppins',sans-serif;background:#f5f5f5;color:#111029}
 .gloss-subtitle{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:8px 14px;background:#000;color:#fff;border-radius:6px;display:inline-block;margin-bottom:12px;margin-top:24px}
 .gloss-subtitle:first-of-type{margin-top:0}
 .glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin-bottom:8px}
+.priorizacion-grid{grid-template-columns:repeat(2,1fr);align-items:start}
+.priorizacion-grid .gloss-card{height:100%}
+@media(max-width:720px){.priorizacion-grid{grid-template-columns:1fr}}
 .gloss-card{background:#fff;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;padding:18px 20px;border-left:4px solid #1500ff;transition:border-color .15s,box-shadow .15s}
 .gloss-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
 .gloss-card.cat-metricas{border-left-color:#c96a00}
@@ -347,7 +350,7 @@ body{padding-top:52px!important}
 
 
     <div class="section-label">Metodologías de Priorización</div>
-    <div class="glossary-grid">
+    <div class="glossary-grid priorizacion-grid">
 
       <div class="gloss-card cat-metodologia searchable" data-tags="moscow must should could wont priorización backlog requerimientos agile">
         <div class="gloss-header"><div><div class="gloss-term">MoSCoW</div><div class="gloss-en">Must · Should · Could · Won't</div></div><span class="gloss-cat-badge">Priorización</span></div>
@@ -369,7 +372,6 @@ body{padding-top:52px!important}
         <div class="gloss-def">También llamada Matriz de Eisenhower, clasifica tareas en dos dimensiones: <strong>Impacto</strong> (qué tan significativo es el resultado si se hace) y <strong>Urgencia</strong> (qué tan pronto debe hacerse). Cuatro zonas: <strong>Hacer ahora</strong> (alto impacto + urgente), <strong>Planificar</strong> (alto impacto + no urgente → donde vive el trabajo estratégico de producto), <strong>Delegar</strong> (bajo impacto + urgente), <strong>Eliminar</strong> (bajo impacto + no urgente). Ayuda al PM a proteger tiempo para trabajo de alto impacto no urgente.</div>
       </div>
 
-    </div>
     </div>
   </div><!-- end panel-glosario -->
 
