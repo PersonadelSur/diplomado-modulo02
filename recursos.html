@@ -720,11 +720,21 @@ var panels = ['glosario','priorizacion','tips','libros','lecturas','podcasts'];
 
 function setTab(tab, btn) {
   currentTab = tab;
+  // Reset active state on tabs
   document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
+  // Show/hide panels and reset hidden on their cards
   panels.forEach(function(k) {
-    var el = document.getElementById('panel-' + k);
-    if (el) el.style.display = (tab === 'all' || tab === k) ? 'block' : 'none';
+    var panel = document.getElementById('panel-' + k);
+    if (!panel) return;
+    var isActive = (tab === 'all' || tab === k);
+    panel.style.display = isActive ? 'block' : 'none';
+    // Remove hidden from all cards in active panel so search can re-evaluate
+    if (isActive) {
+      panel.querySelectorAll('.searchable').forEach(function(el) {
+        el.classList.remove('hidden');
+      });
+    }
   });
   doSearch();
 }
@@ -732,16 +742,22 @@ function setTab(tab, btn) {
 // ── SEARCH ──
 function doSearch() {
   var q = document.getElementById('search-input').value.toLowerCase().trim();
-  var items = document.querySelectorAll('.searchable');
   var visible = 0;
-  items.forEach(function(el) {
-    var panelEl = el.closest('[id^="panel-"]');
-    var panelKey = panelEl ? panelEl.id.replace('panel-', '') : '';
-    var tabOk = currentTab === 'all' || currentTab === panelKey;
-    if (!tabOk) { el.classList.add('hidden'); return; }
-    var text = (el.textContent + ' ' + (el.dataset.tags || '')).toLowerCase();
-    if (!q || text.includes(q)) { el.classList.remove('hidden'); visible++; }
-    else { el.classList.add('hidden'); }
+  panels.forEach(function(k) {
+    var panel = document.getElementById('panel-' + k);
+    if (!panel) return;
+    var isActivePanel = (currentTab === 'all' || currentTab === k);
+    if (!isActivePanel) {
+      // Hide all items in inactive panels
+      panel.querySelectorAll('.searchable').forEach(function(el) { el.classList.add('hidden'); });
+      return;
+    }
+    // Active panel — apply search filter
+    panel.querySelectorAll('.searchable').forEach(function(el) {
+      var text = (el.textContent + ' ' + (el.dataset.tags || '')).toLowerCase();
+      if (!q || text.includes(q)) { el.classList.remove('hidden'); visible++; }
+      else { el.classList.add('hidden'); }
+    });
   });
   var countEl = document.getElementById('search-count');
   if (countEl) countEl.textContent = q ? (visible + ' resultado' + (visible !== 1 ? 's' : '')) : '';
@@ -749,10 +765,13 @@ function doSearch() {
   if (noRes) noRes.classList.toggle('visible', visible === 0 && q.length > 0);
 }
 
-// ── INIT: show all panels ──
+// ── INIT: show all panels, clear hidden ──
 panels.forEach(function(k) {
   var el = document.getElementById('panel-' + k);
-  if (el) el.style.display = 'block';
+  if (el) {
+    el.style.display = 'block';
+    el.querySelectorAll('.searchable').forEach(function(c) { c.classList.remove('hidden'); });
+  }
 });
 </script>
 </body>
