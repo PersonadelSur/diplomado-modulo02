@@ -38,13 +38,13 @@ body{font-family:'Poppins',sans-serif;background:#f5f5f5;color:#111029}
 
 /* ── SECTION LABEL ── */
 .section-label{font-size:.58rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;color:#1500ff;margin-bottom:16px;margin-top:28px;display:flex;align-items:center;gap:10px}
-.section-label:first-child{margin-top:0}
+.section-label:first-child{margin-top:0}[id^="panel-"]>.section-label:first-child{margin-top:0}
 .section-label::after{content:'';flex:1;height:1px;background:rgba(0,0,0,.1)}
 
 /* ── GLOSARIO ── */
 .gloss-subtitle{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;padding:8px 14px;background:#000;color:#fff;border-radius:6px;display:inline-block;margin-bottom:12px;margin-top:24px}
 .gloss-subtitle:first-of-type{margin-top:0}
-.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin-bottom:8px}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:12px;margin-bottom:8px}
 .priorizacion-grid{grid-template-columns:repeat(2,1fr);align-items:start}
 .priorizacion-grid .gloss-card{height:100%}
 @media(max-width:720px){.priorizacion-grid{grid-template-columns:1fr}}
@@ -68,7 +68,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f5f5;color:#111029}
 .gloss-def strong{font-weight:600;color:#000}
 
 /* ── TIPS ── */
-.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:12px}
 .tip-card{background:#fff;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,box-shadow .15s;border-top:4px solid #111029}
 .tip-card:hover{border-color:#1500ff;box-shadow:0 4px 20px rgba(21,0,255,.08)}
 .tip-header{display:flex;align-items:center;gap:10px}
@@ -79,7 +79,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f5f5;color:#111029}
 .tip-text strong{font-weight:600;color:#000}
 
 /* ── LIBROS ── */
-.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:12px}
 .book-card{background:#fff;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;padding:20px 22px;text-decoration:none;color:#111029;transition:border-color .15s,box-shadow .15s;display:flex;flex-direction:column;gap:5px}
 .book-card:hover{border-color:#007a5e;box-shadow:0 4px 20px rgba(0,122,94,.1)}
 .book-emoji{font-size:2rem;margin-bottom:4px;display:block}
@@ -90,7 +90,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f5f5;color:#111029}
 .book-cta{margin-top:10px;font-size:.6rem;font-weight:700;color:#007a5e;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:4px}
 
 /* ── ARTÍCULOS ── */
-.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:12px}
 .article-card{background:#fff;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;padding:18px 20px;text-decoration:none;color:#111029;transition:border-color .15s,box-shadow .15s;display:flex;flex-direction:column;gap:6px;border-left:4px solid #c96a00}
 .article-card:hover{border-color:#c96a00;box-shadow:0 4px 20px rgba(201,106,0,.1)}
 .article-source-badge{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#c96a00}
@@ -99,7 +99,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f5f5;color:#111029}
 .article-cta{font-size:.6rem;font-weight:700;color:#c96a00;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
 
 /* ── PODCASTS ── */
-.pod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.pod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:12px}
 .pod-card{background:#fff;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;padding:20px 22px;text-decoration:none;color:#111029;transition:border-color .15s,box-shadow .15s;display:flex;flex-direction:column;gap:5px}
 .pod-card:hover{border-color:#5a006b;box-shadow:0 4px 20px rgba(90,0,107,.1)}
 .pod-emoji{font-size:2rem;margin-bottom:4px;display:block}
@@ -111,6 +111,7 @@ body{font-family:'Poppins',sans-serif;background:#f5f5f5;color:#111029}
 
 /* ── UTILS ── */
 .no-results{text-align:center;padding:48px 24px;color:#aaaabb;font-size:.82rem;display:none}
+[id^="panel-"]{width:100%;box-sizing:border-box;padding-top:4px}
 .no-results.visible{display:block}
 .footer{margin-top:56px;padding-top:20px;border-top:1.5px solid #000;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px}
 .footer-module{font-size:.72rem;font-weight:700;color:#000}
